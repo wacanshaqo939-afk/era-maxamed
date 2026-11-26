@@ -677,10 +677,21 @@ function handleLoginSubmit(event) {
   if (typeof openAppView === 'function') {
     openAppView();
   }
-   return false;
+     const loginSec = document.getElementById('loginView');
+  const dashSec = document.getElementById('dashTab');
+  if (loginSec) {
+    loginSec.classList.add('hidden');
+    loginSec.style.display = 'none';
+  }
+  if (dashSec) {
+    dashSec.classList.remove('hidden');
+    dashSec.style.display = 'block';
+  }
+  return false;
+
 }
  
- }
+ 
   
     
   
