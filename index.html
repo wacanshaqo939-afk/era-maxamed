@@ -530,3 +530,143 @@
         { id: 2, code: 'CTY-002', name: 'Xaliima Cali Xasan', className: 'Class 8', section: 'Section A', parentName: 'Cali Xasan', parentPhone: '252615200002', regDate: TODAY(), status: 'Active' },
         { id: 3, code: 'CTY-003', name: 'Cabdiraxmaan Nuur Yuusuf', className: 'Form 1', section: 'Section B', parentName: 'Nuur Yuusuf', parentPhone: '252615200003', regDate: TODAY(), status: 'Active' },
         { id: 4, code: 'CTY-004', name: 'Sahra Jaamac Warsame', className: 'Form 2', section: 'Section
+  ],
+  attendance: {},
+  auditLog: []
+};
+
+function loadDB() {
+  try {
+    const raw = localStorage.getItem(DB_KEY);
+    if (!raw) {
+      const fresh = JSON.parse(JSON.stringify(SEED));
+      localStorage.setItem(DB_KEY, JSON.stringify(fresh));
+      return fresh;
+    }
+    const parsed = JSON.parse(raw);
+    return {
+      ...JSON.parse(JSON.stringify(SEED)),
+      ...parsed,
+      adminEmail: 'wacanshaqo939@gmail.com',
+      students: Array.isArray(parsed.students) && parsed.students.length ? parsed.students : JSON.parse(JSON.stringify(SEED.students)),
+      attendance: parsed.attendance && typeof parsed.attendance === 'object' ? parsed.attendance : {},
+      auditLog: Array.isArray(parsed.auditLog) ? parsed.auditLog : []
+    };
+  } catch (e) {
+    const fallback = JSON.parse(JSON.stringify(SEED));
+    localStorage.setItem(DB_KEY, JSON.stringify(fallback));
+    return fallback;
+  }
+}
+
+function saveDB() {
+  localStorage.setItem(DB_KEY, JSON.stringify(db));
+}
+
+let db = loadDB();
+
+function findLoginInputs() {
+  const emailEl =
+    document.getElementById('loginEmail') ||
+    document.getElementById('adminEmail') ||
+    document.querySelector('input[type="email"]');
+  const passEl =
+    document.getElementById('loginPass') ||
+    document.getElementById('adminPass') ||
+    document.getElementById('loginPassword') ||
+    document.querySelector('input[type="password"]');
+  const loginBtn =
+    document.getElementById('loginBtn') ||
+    Array.from(document.querySelectorAll('button')).find((b) =>
+      /gal nidaamka|login/i.test(b.textContent || '')
+    );
+  const loginBox =
+    document.getElementById('loginScreen') ||
+    document.getElementById('loginCard') ||
+    document.getElementById('authScreen') ||
+    (loginBtn ? loginBtn.closest('section, div.card, div, form') : null);
+  const appBox =
+    document.getElementById('appScreen') ||
+    document.getElementById('mainApp') ||
+    document.getElementById('dashboard') ||
+    document.querySelector('main');
+  return { emailEl, passEl, loginBtn, loginBox, appBox };
+}
+
+function openAppView() {
+  const { loginBox, appBox } = findLoginInputs();
+  if (loginBox) {
+    loginBox.classList.add('hidden');
+    loginBox.style.display = 'none';
+  }
+  if (appBox) {
+    appBox.classList.remove('hidden');
+    appBox.style.display = '';
+  }
+  if (typeof renderAll === 'function') renderAll();
+  if (typeof renderDashboard === 'function') renderDashboard();
+  if (typeof renderStudents === 'function') renderStudents();
+}
+
+function handleLoginSubmit(event) {
+  if (event && typeof event.preventDefault === 'function') event.preventDefault();
+  const { emailEl, passEl } = findLoginInputs();
+  const enteredEmail = (emailEl ? emailEl.value : '').trim().toLowerCase();
+  const enteredPass = passEl ? passEl.value : '';
+
+  if (enteredEmail !== 'wacanshaqo939@gmail.com') {
+    alert('Isticmaal kaliya Gmail-ka rasmiga ah: wacanshaqo939@gmail.com');
+    return false;
+  }
+  if (!enteredPass) {
+    alert('Fadlan geli Password / PIN cusub.');
+    return false;
+  }
+
+  db.adminEmail = 'wacanshaqo939@gmail.com';
+  if (!db.adminPass) {
+    db.adminPass = enteredPass;
+    db.loggedIn = true;
+    db.auditLog.unshift('Password cusub ayaa la dejiyay: ' + new Date().toLocaleString());
+    saveDB();
+    openAppView();
+    return false;
+  }
+
+  if (enteredPass === db.adminPass) {
+    db.loggedIn = true;
+    saveDB();
+    openAppView();
+    return false;
+  }
+
+  alert('Password / PIN-ku waa khalad.');
+  return false;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const { emailEl, passEl, loginBtn } = findLoginInputs();
+  if (emailEl) {
+    emailEl.value = 'wacanshaqo939@gmail.com';
+    emailEl.setAttribute('autocomplete', 'username');
+  }
+  if (passEl) {
+    passEl.setAttribute('autocomplete', 'new-password');
+  }
+  const form = loginBtn ? loginBtn.closest('form') : null;
+  if (form) {
+    form.addEventListener('submit', handleLoginSubmit);
+  }
+  if (loginBtn) {
+    loginBtn.type = 'button';
+    loginBtn.addEventListener('click', handleLoginSubmit);
+  }
+  if (db.loggedIn && db.adminPass) {
+    openAppView();
+  }
+});
+</script>
+</body>
+</html>
+  
+  
