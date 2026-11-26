@@ -674,38 +674,18 @@ function handleLoginSubmit(event) {
     return false;
   }
 
-  const loginView = document.getElementById('loginView');
-  const mainApp = document.getElementById('mainApp');
-  const logoutBtn = document.getElementById('logoutBtn');
-  if (loginView) {
-    loginView.classList.add('hidden');
-    loginView.style.display = 'none';
+  if (typeof openAppView === 'function') {
+    openAppView();
   }
-  if (mainApp) {
-    mainApp.classList.remove('hidden');
-    mainApp.style.display = '';
-  }
-  if (logoutBtn) logoutBtn.classList.remove('hidden');
-  if (typeof renderAll === 'function') renderAll();
-  if (typeof renderDashboard === 'function') renderDashboard();
-  if (typeof renderStudents === 'function') renderStudents();
-  return false;
+   return false;
 }
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const { emailEl, passEl, loginBtn } = findLoginInputs();
-  if (emailEl) {
-    emailEl.value = 'wacanshaqo939@gmail.com';
-    emailEl.setAttribute('autocomplete', 'username');
-  }
-  if (passEl) {
-    passEl.setAttribute('autocomplete', 'new-password');
-  }
-  const form = loginBtn ? loginBtn.closest('form') : null;
-  if (form) {
-    form.addEventListener('submit', handleLoginSubmit);
-  }
+ 
+ }
+  
+    
+  
+  
+  
   if (loginBtn) {
     loginBtn.type = 'button';
     loginBtn.addEventListener('click', handleLoginSubmit);
@@ -713,7 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (db.loggedIn && db.adminPass) {
     openAppView();
   }
-});
+    }
 </script>
 </body>
 </html>
