@@ -642,7 +642,57 @@ function handleLoginSubmit(event) {
 
   alert('Password / PIN-ku waa khalad.');
   return false;
+}function loginTeacher() {
+  const emailEl = document.getElementById('loginEmail');
+  const passEl = document.getElementById('loginPass');
+  const msgEl = document.getElementById('loginMsg');
+  const enteredEmail = (emailEl ? emailEl.value : '').trim().toLowerCase();
+  const enteredPass = passEl ? passEl.value : '';
+
+  if (enteredEmail !== 'wacanshaqo939@gmail.com') {
+    if (msgEl) msgEl.textContent = 'Isticmaal kaliya Gmail-ka rasmiga ah: wacanshaqo939@gmail.com';
+    alert('Isticmaal kaliya Gmail-ka rasmiga ah: wacanshaqo939@gmail.com');
+    return false;
+  }
+  if (!enteredPass) {
+    if (msgEl) msgEl.textContent = 'Fadlan geli Password / PIN cusub.';
+    alert('Fadlan geli Password / PIN cusub.');
+    return false;
+  }
+
+  db.adminEmail = 'wacanshaqo939@gmail.com';
+  if (!db.adminPass) {
+    db.adminPass = enteredPass;
+    db.loggedIn = true;
+    db.auditLog.unshift('Password cusub ayaa la dejiyay: ' + new Date().toLocaleString());
+    saveDB();
+  } else if (enteredPass === db.adminPass) {
+    db.loggedIn = true;
+    saveDB();
+  } else {
+    if (msgEl) msgEl.textContent = 'Password / PIN-ku waa khalad.';
+    alert('Password / PIN-ku waa khalad.');
+    return false;
+  }
+
+  const loginView = document.getElementById('loginView');
+  const mainApp = document.getElementById('mainApp');
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (loginView) {
+    loginView.classList.add('hidden');
+    loginView.style.display = 'none';
+  }
+  if (mainApp) {
+    mainApp.classList.remove('hidden');
+    mainApp.style.display = '';
+  }
+  if (logoutBtn) logoutBtn.classList.remove('hidden');
+  if (typeof renderAll === 'function') renderAll();
+  if (typeof renderDashboard === 'function') renderDashboard();
+  if (typeof renderStudents === 'function') renderStudents();
+  return false;
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const { emailEl, passEl, loginBtn } = findLoginInputs();
