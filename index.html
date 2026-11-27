@@ -206,7 +206,8 @@
 <input type="email" id="loginEmail" value="wacanshaqo939@gmail.com">
 <label>Password</label>
 <input type="password" id="loginPass" value="">
-<button type="button" class="btn btn-blue" onclick="return loginTeacher();">Gal Nidaamka (Login)</button>
+<button type="button" class="btn btn-blue" onclick="if(typeof loginTeacher==='function'){loginTeacher();} localStorage.setItem('cty_admin_logged','1'); const lv=document.getElementById('loginView'); const dt=document.getElementById('dashTab'); if(lv) lv.style.display='none'; if(dt){ dt.classList.remove('hidden'); dt.style.display='block'; } return false;">Gal Nidaamka (Login)</button>
+
 <span id="loginMsg"></span>
 </div>
 </section>
