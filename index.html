@@ -3,711 +3,1195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CTY SCHOOL — Attendance Management System</title>
-  <meta name="theme-color" content="#1d4ed8" />
+  <title>CTY SCHOOL — Nidaamka Maamulka Xaadirinta Ardayda</title>
   <style>
     :root {
-      --blue: #1d4ed8;
-      --blue-dark: #1e3a8a;
-      --blue-soft: #eff6ff;
-      --blue-border: #bfdbfe;
-      --white: #ffffff;
-      --bg: #f8fafc;
-      --text: #0f172a;
-      --muted: #64748b;
-      --green: #15803d;
-      --green-bg: #dcfce7;
-      --red: #b91c1c;
-      --red-bg: #fee2e2;
-      --amber: #b45309;
-      --amber-bg: #fef3c7;
+      --blue-royal: #0f4c81;
+      --blue-bright: #1976d2;
+      --blue-sky: #e3f2fd;
+      --blue-tick: #1d9bf0;
+      --teal: #00897b;
+      --teal-bg: #e0f2f1;
+      --indigo: #3949ab;
+      --indigo-bg: #e8eaf6;
+      --bg: #eef3f9;
+      --card: #ffffff;
+      --text: #102a43;
+      --muted: #526d82;
+      --border: #d5e2f0;
+      --ok: #15803d;
+      --ok-bg: #dcfce7;
+      --ok-border: #86efac;
+      --bad: #b91c1c;
+      --bad-bg: #fee2e2;
+      --bad-border: #fca5a5;
+      --warn: #b45309;
+      --warn-bg: #fef3c7;
+      --warn-border: #fcd34d;
     }
-
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.45; }
-
-    .offline-bar {
-      display: none;
-      background: #991b1b;
-      color: #fff;
-      text-align: center;
-      padding: 8px 12px;
-      font-size: 0.85rem;
-      font-weight: 600;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: linear-gradient(180deg, #e7eff8 0%, var(--bg) 55%, #f5f8fc 100%);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 44px;
     }
-    .offline-bar.show { display: block; }
+    .hidden { display: none !important; }
 
     header {
-      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
-      color: var(--white);
-      padding: 16px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      box-shadow: 0 3px 12px rgba(29, 78, 216, 0.2);
+      background: linear-gradient(120deg, #0b2f5e 0%, var(--blue-royal) 52%, var(--blue-bright) 100%);
+      color: #fff;
+      padding: 15px 16px;
+      box-shadow: 0 4px 14px rgba(15, 76, 129, 0.22);
     }
     .header-inner {
       max-width: 1120px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      align-items: center;
+      gap: 12px;
     }
-    .brand h1 { margin: 0; font-size: 1.25rem; font-weight: 800; }
-    .brand p { margin: 2px 0 0; font-size: 0.8rem; color: #dbeafe; }
+    .brand-row { display: flex; align-items: center; gap: 11px; }
+    .school-crest {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+    .brand h1 { font-size: 1.24rem; letter-spacing: 0.4px; }
+    .brand p { font-size: 0.78rem; opacity: 0.92; }
 
-    .top-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .top-actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .pill-btn {
       background: rgba(255, 255, 255, 0.16);
-      color: var(--white);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      padding: 7px 12px;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      padding: 6px 12px;
       border-radius: 999px;
       font-size: 0.8rem;
-      font-weight: 700;
+      font-weight: 600;
       cursor: pointer;
     }
-    .pill-btn:hover { background: rgba(255, 255, 255, 0.26); }
+    .pill-btn:hover { background: rgba(255, 255, 255, 0.28); }
+    .pill-exit { background: rgba(185, 28, 28, 0.28); border-color: rgba(254, 202, 202, 0.55); }
 
-    .wrap { max-width: 1120px; margin: 18px auto; padding: 0 14px 48px; }
-
+    .container { max-width: 1120px; margin: 16px auto; padding: 0 12px; }
     .card {
-      background: var(--white);
-      border: 1px solid var(--blue-border);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 10px rgba(29, 78, 216, 0.05);
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 3px 10px rgba(16, 42, 67, 0.05);
     }
-    .card h2 {
-      margin: 0 0 12px;
-      font-size: 1.05rem;
-      color: var(--blue-dark);
+    .card-accent-blue { border-top: 4px solid var(--blue-bright); }
+    .card-accent-teal { border-top: 4px solid var(--teal); }
+    .card-accent-indigo { border-top: 4px solid var(--indigo); }
+    .card-accent-warn { border-top: 4px solid var(--warn); }
+
+    .login-box { max-width: 440px; margin: 28px auto; border-top: 4px solid var(--blue-bright); }
+    h2 { font-size: 1.05rem; color: var(--blue-royal); margin-bottom: 10px; }
+
+    .admin-bar {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(90deg, #e8f3ff 0%, #f0f7ff 100%);
+      border: 1px solid #bdd9f8;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      font-size: 0.84rem;
+    }
+    .blue-tick-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e3f2fd;
+      color: var(--blue-royal);
+      border: 1px solid #90caf9;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+    .blue-tick-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: var(--blue-tick);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+    .persist-tag {
+      background: var(--ok-bg);
+      color: var(--ok);
+      border: 1px solid var(--ok-border);
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
     }
 
-    .login-card { max-width: 460px; margin: 36px auto; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    @media (max-width: 820px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } }
-    @media (max-width: 580px) { .grid-2, .grid-4 { grid-template-columns: 1fr; } }
-
-    label { display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px; }
-    input, select, textarea {
+    .field { margin-bottom: 11px; }
+    label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+    input, select {
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      font-size: 0.9rem;
-      background: var(--white);
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 0.92rem;
+      background: #fff;
       color: var(--text);
     }
-    input:focus, select:focus { outline: 2px solid #93c5fd; border-color: var(--blue); }
+    input:focus, select:focus { outline: 2px solid var(--blue-bright); border-color: var(--blue-bright); }
 
     .btn {
-      padding: 9px 13px;
-      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 14px;
       border: none;
+      border-radius: 9px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-blue { background: var(--blue-bright); color: #fff; }
+    .btn-blue:hover { background: var(--blue-royal); }
+    .btn-teal { background: var(--teal); color: #fff; }
+    .btn-light { background: var(--blue-sky); color: var(--blue-royal); border: 1px solid #c5dff8; }
+    .btn-green { background: var(--ok); color: #fff; }
+    .btn-red { background: var(--bad); color: #fff; }
+    .btn-sm { padding: 5px 10px; font-size: 0.78rem; }
+
+    .msg { margin-top: 8px; font-size: 0.84rem; font-weight: 600; }
+    .msg.err { color: var(--bad); }
+    .msg.ok { color: var(--ok); }
+
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+    .tab-btn {
+      background: #fff;
+      color: var(--blue-royal);
+      border: 1px solid var(--border);
+      padding: 8px 13px;
+      border-radius: 10px;
       font-size: 0.84rem;
       font-weight: 700;
       cursor: pointer;
     }
-    .btn-blue { background: var(--blue); color: var(--white); }
-    .btn-blue:hover { background: var(--blue-dark); }
-    .btn-outline { background: var(--white); color: var(--blue); border: 1px solid var(--blue); }
-    .btn-present { background: var(--green); color: var(--white); }
-    .btn-absent { background: var(--red); color: var(--white); }
-    .btn-excused { background: var(--amber); color: var(--white); }
-    .btn-del { background: #475569; color: var(--white); }
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--blue-royal), var(--blue-bright));
+      color: #fff;
+      border-color: var(--blue-royal);
+      box-shadow: 0 2px 6px rgba(25, 118, 210, 0.25);
+    }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 10px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
 
     .stat {
-      background: var(--blue-soft);
-      border: 1px solid var(--blue-border);
       border-radius: 12px;
-      padding: 14px;
+      padding: 13px;
+      border: 1px solid var(--border);
     }
-    .stat .num { font-size: 1.55rem; font-weight: 800; color: var(--blue); }
-    .stat .lbl { font-size: 0.8rem; color: #334155; font-weight: 600; }
+    .stat-blue { background: #edf5ff; border-color: #c6defa; }
+    .stat-green { background: var(--ok-bg); border-color: var(--ok-border); }
+    .stat-red { background: var(--bad-bg); border-color: var(--bad-border); }
+    .stat-amber { background: var(--warn-bg); border-color: var(--warn-border); }
+    .stat-teal { background: var(--teal-bg); border-color: #99d5cf; }
+    .stat-indigo { background: var(--indigo-bg); border-color: #c5cae9; }
 
-    .nav-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-    .tab-btn {
-      padding: 9px 14px;
-      border-radius: 9px;
-      border: 1px solid var(--blue-border);
-      background: var(--white);
-      color: var(--blue-dark);
-      font-weight: 700;
-      font-size: 0.84rem;
-      cursor: pointer;
-    }
-    .tab-btn.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .stat .num { font-size: 1.45rem; font-weight: 800; color: var(--text); }
+    .stat-green .num { color: var(--ok); }
+    .stat-red .num { color: var(--bad); }
+    .stat-amber .num { color: var(--warn); }
+    .stat-blue .num { color: var(--blue-royal); }
+    .stat-teal .num { color: var(--teal); }
+    .stat-indigo .num { color: var(--indigo); }
+    .stat .lbl { font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
 
-    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
     th, td {
+      padding: 9px 8px;
+      border-bottom: 1px solid var(--border);
       text-align: left;
-      padding: 10px 8px;
-      border-bottom: 1px solid #e2e8f0;
-      font-size: 0.84rem;
-      vertical-align: middle;
+      white-space: nowrap;
     }
-    th { background: var(--blue-soft); color: var(--blue-dark); font-weight: 700; }
+    th { background: #f2f7fd; color: var(--blue-royal); font-weight: 700; }
 
-    .badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; }
-    .b-jooga { background: var(--green-bg); color: var(--green); }
-    .b-maqan { background: var(--red-bg); color: var(--red); }
-    .b-fasax { background: var(--amber-bg); color: var(--amber); }
-    .b-none { background: #e2e8f0; color: #334155; }
+    .badge { padding: 3px 9px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; display: inline-block; }
+    .b-jooga { background: var(--ok-bg); color: var(--ok); }
+    .b-maqan { background: var(--bad-bg); color: var(--bad); }
+    .b-fasax { background: var(--warn-bg); color: var(--warn); }
 
-    .row-actions { display: flex; flex-wrap: wrap; gap: 5px; }
-    .row-actions .btn { padding: 6px 9px; font-size: 0.76rem; }
-    .muted { color: var(--muted); font-size: 0.8rem; }
-    .hidden { display: none !important; }
+    .att-group { display: flex; gap: 5px; }
+    .att-opt {
+      padding: 4px 9px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #fff;
+    }
+    .att-opt.sel-Jooga { background: var(--ok); color: #fff; border-color: var(--ok); }
+    .att-opt.sel-Maqan { background: var(--bad); color: #fff; border-color: var(--bad); }
+    .att-opt.sel-Fasax { background: var(--warn); color: #fff; border-color: var(--warn); }
+
+    .bar-bg { width: 100%; height: 13px; background: #dcebfa; border-radius: 999px; overflow: hidden; margin-top: 6px; }
+    .bar-fill { height: 100%; background: linear-gradient(90deg, var(--blue-bright), var(--teal)); transition: width 0.25s; }
 
     @media print {
-      header, .nav-tabs, .no-print, .offline-bar { display: none !important; }
+      header, .nav-tabs, .admin-bar, .no-print { display: none !important; }
       body { background: #fff; }
-      .card { box-shadow: none; border: 1px solid #cbd5e1; }
+      .card { box-shadow: none; border: 1px solid #ccc; }
     }
   </style>
 </head>
 <body>
-  <div id="offlineBar" class="offline-bar">
-    ⚠️ Internet-ku wuu go'ay (Offline Mode). Isbeddellada waxaa lagu kaydinayaa gudaha qalabka ilaa xiriirku soo noqdo.
-  </div>
-
   <header>
     <div class="header-inner">
-      <div class="brand">
-        <h1 id="appTitle">CTY SCHOOL</h1>
-        <p id="appSub">CTY SCHOOL ATTENDANCE MANAGEMENT SYSTEM — Private School (Soomaaliya)</p>
+      <div class="brand-row">
+        <div class="school-crest">CTY</div>
+        <div class="brand">
+          <h1 id="hdrSchoolName">CTY SCHOOL</h1>
+          <p id="hdrSub">NIDAAMKA MAAMULKA XAADIRINTA ARDAYDA · Soomaaliya</p>
+        </div>
       </div>
-      <div class="top-controls">
-        <span id="clockBadge" class="pill-btn"></span>
-        <button class="pill-btn" onclick="toggleLang()" id="langBtn">🌐 English</button>
-        <button class="pill-btn" onclick="speakSummary()">🔊 Codka</button>
-        <button class="pill-btn" onclick="installGuide()">📲 PWA / App</button>
-        <button id="logoutBtn" class="pill-btn hidden" onclick="logoutTeacher()">🚪 Logout</button>
+      <div class="top-actions">
+        <button type="button" class="pill-btn" onclick="toggleLang()" id="btnLang">English</button>
+        <button type="button" class="pill-btn" onclick="exportBackup()" id="btnBackup">Kayd Celis (JSON)</button>
+        <button type="button" class="pill-btn pill-exit hidden" onclick="logoutAdmin()" id="btnLogout">Ka Bax</button>
       </div>
     </div>
   </header>
-  <section id="loginView" class="wrap">
-    <div class="card login-card">
-<h2>Gelitaanka Macallinka (Admin)</h2>
-<p>Geli wacanshaqo939@gmail.com iyo Password cusub.</p>
-<label>Gmail</label>
-<input type="email" id="loginEmail" value="wacanshaqo939@gmail.com">
-<label>Password</label>
-<input type="password" id="loginPass" value="">
-<button type="button" class="btn btn-blue" onclick="if(typeof loginTeacher==='function'){loginTeacher();} localStorage.setItem('cty_admin_logged','1'); const lv=document.getElementById('loginView'); const dt=document.getElementById('dashTab'); if(lv) lv.style.display='none'; if(dt){ dt.classList.remove('hidden'); dt.style.display='block'; } return false;">Gal Nidaamka (Login)</button>
 
-<span id="loginMsg"></span>
-</div>
-</section>
-    
-      
-      
-      
-      
-      
-  
-  
-      
-        
-        
-        
-    
-    
-  
-
-  
-  
-    
-
-    
-
-    <!-- 8. DASHBOARD-KA UGU WEYN -->
-    <section id="dashTab" class="tab-panel">
-      <div class="card">
-        <h2>
-          <span>Dashboard — <span id="dashYearLabel">2026/2027</span></span>
-          <span class="muted" id="activeTeacherBadge"></span>
-        </h2>
-        <div class="grid-4">
-          <div class="stat"><div class="num" id="stTotal">0</div><div class="lbl">Tirada Guud ee Ardayda</div></div>
-          <div class="stat"><div class="num" id="stPresent">0</div><div class="lbl">Ardayda Maanta Joogta</div></div>
-          <div class="stat"><div class="num" id="stAbsent">0</div><div class="lbl">Ardayda Maanta Maqan</div></div>
-          <div class="stat"><div class="num" id="stExcused">0</div><div class="lbl">Ardayda Fasaxa Ah</div></div>
+  <div class="container">
+    <!-- GELITAANKA MAAMULKA -->
+    <section id="loginView" class="card login-box">
+      <h2 id="loginTitle">Gelitaanka Maamulaha (Admin)</h2>
+      <p style="font-size:0.84rem;color:var(--muted);margin-bottom:12px;" id="loginHint">
+        Gmail-ka rasmiga ah: <strong>wacanshaqo939@gmail.com</strong>. Marka aad gasho si toos ah ayuu kuu sii haynayaa.
+      </p>
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="field">
+          <label for="loginEmail">Gmail</label>
+          <input type="email" id="loginEmail" value="wacanshaqo939@gmail.com" required />
         </div>
-        <div class="grid-3" style="margin-top:10px;">
-          <div class="stat"><div class="num" id="stClasses">20</div><div class="lbl">Fasallada &amp; Qaybaha (Class 8 – Form 4, A–D)</div></div>
-          <div class="stat"><div class="num" id="stNotifs">0</div><div class="lbl">Ogeysiisyada Waalidka (MAQAN / FASAX)</div></div>
-          <div class="stat"><div class="num" id="stTodayDate">-</div><div class="lbl">Taariikhda Xaadirinta Maanta</div></div>
+        <div class="field">
+          <label for="loginPass" id="lblPass">Password</label>
+          <input type="password" id="loginPass" placeholder="Geli password-kaaga (4+ xaraf)" required />
         </div>
-      </div>
-
-      <div class="card">
-        <h2>Warbixinta Degdegga ah ee Xaadirinta Maanta</h2>
-        <div id="dashTodaySummary" class="muted" style="font-size:0.9rem;"></div>
-      </div>
+        <button type="submit" class="btn btn-blue" style="width:100%;" id="btnLogin">Gal Nidaamka (Login)</button>
+        <div id="loginMsg" class="msg"></div>
+      </form>
     </section>
 
-    <!-- 6 & 10. NIDAAMKA XAADIRINTA IYO RAADINTA -->
-    <section id="attTab" class="tab-panel hidden">
-      <div class="card no-print">
-        <h2>Xaadirinta Maalinlaha ah &amp; Raadinta</h2>
-        <div class="grid-4">
-          <div>
-            <label>Taariikhda Xaadirinta</label>
-            <input type="date" id="attDate" onchange="renderAttendance()" />
+    <!-- NIDAAMKA GUDAHA -->
+    <section id="appView" class="hidden">
+      <div class="admin-bar">
+        <div>
+          <span class="blue-tick-badge" id="adminVerifiedBadge">
+            <span class="blue-tick-icon">✓</span>
+            <span>Maamulaha La Xaqiijiyay</span>
+          </span>
+          <span style="margin-left:8px;font-weight:600;" id="activeAdminEmail">wacanshaqo939@gmail.com</span>
+        </div>
+        <span class="persist-tag" id="autoLoginStatus">Gelitaan Toos Ah</span>
+      </div>
+
+      <div class="nav-tabs no-print">
+        <button type="button" class="tab-btn active" data-tab="dash" onclick="switchTab('dash')" id="tabDash">Bogga Hore</button>
+        <button type="button" class="tab-btn" data-tab="att" onclick="switchTab('att')" id="tabAtt">Xaadirinta Maanta</button>
+        <button type="button" class="tab-btn" data-tab="students" onclick="switchTab('students')" id="tabStudents">Ardayda</button>
+        <button type="button" class="tab-btn" data-tab="classes" onclick="switchTab('classes')" id="tabClasses">Fasallada & Qaybaha</button>
+        <button type="button" class="tab-btn" data-tab="reports" onclick="switchTab('reports')" id="tabReports">Warbixinno</button>
+        <button type="button" class="tab-btn" data-tab="settings" onclick="switchTab('settings')" id="tabSettings">Dejinta</button>
+      </div>
+
+      <!-- 1. BOGGA HORE -->
+      <div id="pane-dash" class="tab-pane">
+        <div class="card card-accent-blue">
+          <h2 id="dashHeading">Dashboard — 2026/2027</h2>
+          <div class="grid-4" style="margin-bottom:12px;">
+            <div class="stat stat-blue"><div class="num" id="stTotal">0</div><div class="lbl">Tirada Guud ee Ardayda</div></div>
+            <div class="stat stat-green"><div class="num" id="stPresent">0</div><div class="lbl">Ardayda Maanta Joogta</div></div>
+            <div class="stat stat-red"><div class="num" id="stAbsent">0</div><div class="lbl">Ardayda Maanta Maqan</div></div>
+            <div class="stat stat-amber"><div class="num" id="stExcused">0</div><div class="lbl">Ardayda Fasaxa Ah</div></div>
           </div>
-          <div>
-            <label>Fasalka</label>
-            <select id="attClass" onchange="renderAttendance()">
-              <option value="ALL">Dhammaan Fasallada</option>
-              <option value="Class 8">Class 8</option>
-              <option value="Form 1">Form 1</option>
-              <option value="Form 2">Form 2</option>
-              <option value="Form 3">Form 3</option>
-              <option value="Form 4">Form 4</option>
-            </select>
+          <div class="grid-3">
+            <div class="stat stat-teal"><div class="num" id="stRate">0%</div><div class="lbl">Boqolleyda Xaadirinta Maanta</div></div>
+            <div class="stat stat-indigo"><div class="num" id="stClassesCount">20</div><div class="lbl">Fasallada & Qaybaha (5 × 4)</div></div>
+            <div class="stat stat-blue"><div class="num" id="stLastDate">-</div><div class="lbl">Xaadirintii Ugu Dambeysay</div></div>
           </div>
-          <div>
-            <label>Qaybta (Section)</label>
-            <select id="attSection" onchange="renderAttendance()">
-              <option value="ALL">Dhammaan Qaybaha</option>
-              <option value="Section A">Section A</option>
-              <option value="Section B">Section B</option>
-              <option value="Section C">Section C</option>
-              <option value="Section D">Section D</option>
-            </select>
-          </div>
-          <div>
-            <label>Raadi (Magac / ID / Fasal)</label>
-            <input type="text" id="attSearch" oninput="renderAttendance()" placeholder="Tusaale: Axmed ama CTY-001" />
+          <div style="margin-top:14px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:700;">
+              <span>Heerka Xaadirinta Maanta</span>
+              <span id="barPctLabel">0%</span>
+            </div>
+            <div class="bar-bg"><div class="bar-fill" id="attBar" style="width:0%;"></div></div>
           </div>
         </div>
 
-        <div class="row-actions" style="margin-top:12px;">
-          <button class="btn btn-present" onclick="bulkMark('JOOGA')">Hal Mar dhig: JOOGA</button>
-          <button class="btn btn-absent" onclick="bulkMark('MAQAN')">Hal Mar dhig: MAQAN + WhatsApp</button>
-          <button class="btn btn-excused" onclick="bulkMark('FASAX')">Hal Mar dhig: FASAX + WhatsApp</button>
-          <select id="attStatusFilter" onchange="renderAttendance()" style="width:auto;padding:7px 10px;font-size:0.82rem;">
-            <option value="ALL">Xaalad kasta</option>
-            <option value="JOOGA">Ardayda Jooga</option>
-            <option value="MAQAN">Ardayda Maqan</option>
-            <option value="FASAX">Ardayda Fasaxa Ah</option>
-          </select>
+        <div class="card card-accent-warn">
+          <h2>Ogeysiisyada Waalidka (Maqan / Fasax Maanta)</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ardayga</th>
+                  <th>Fasal / Qayb</th>
+                  <th>Xaaladda</th>
+                  <th>Waalidka & WhatsApp</th>
+                  <th>Farriinta</th>
+                </tr>
+              </thead>
+              <tbody id="parentAlertsBody"></tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-      <div class="card">
-        <h2>Liiska Xaadirinta</h2>
-        <div style="overflow-x:auto;">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Magaca Ardayga</th>
-                <th>Fasalka &amp; Qaybta</th>
-                <th>Waalidka &amp; WhatsApp</th>
-                <th>Xaaladda &amp; Waqtiga</th>
-                <th class="no-print">Calaamadee (Hal Taabasho)</th>
-              </tr>
-            </thead>
-            <tbody id="attTableBody"></tbody>
-          </table>
+      <!-- 2. XAADIRINTA MAALINLAHA AH -->
+      <div id="pane-att" class="tab-pane hidden">
+        <div class="card card-accent-teal">
+          <h2>Xaadirinta Maalinlaha Ah</h2>
+          <div class="grid-3" style="margin-bottom:12px;">
+            <div class="field">
+              <label>Taariikhda</label>
+              <input type="date" id="attDate" onchange="renderAttendanceSheet()" />
+            </div>
+            <div class="field">
+              <label>Fasalka</label>
+              <select id="attClass" onchange="renderAttendanceSheet()">
+                <option value="Fasalka 8aad">Fasalka 8aad</option>
+                <option value="F1">F1</option>
+                <option value="F2">F2</option>
+                <option value="F3">F3</option>
+                <option value="F4">F4</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Qaybta</label>
+              <select id="attSection" onchange="renderAttendanceSheet()">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+            <button type="button" class="btn btn-light btn-sm" onclick="markAll('Jooga')">Dhammaan Jooga</button>
+            <button type="button" class="btn btn-teal" onclick="saveAttendance()">Kaydi Xaadirinta</button>
+          </div>
+          <div id="attSaveMsg" class="msg"></div>
+          <div class="table-wrap" style="margin-top:8px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Lambarka</th>
+                  <th>Magaca Buuxa</th>
+                  <th>Xaadirinta</th>
+                  <th>WhatsApp Waalidka</th>
+                </tr>
+              </thead>
+              <tbody id="attSheetBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. MAAMULKA ARDAYDA -->
+      <div id="pane-students" class="tab-pane hidden">
+        <div class="card card-accent-blue">
+          <h2 id="stuFormTitle">Ku Dar / Wax Ka Beddel Arday</h2>
+          <form id="studentForm" onsubmit="saveStudent(event)">
+            <input type="hidden" id="stuEditId" />
+            <div class="grid-3">
+              <div class="field">
+                <label>Magaca oo Buuxa *</label>
+                <input type="text" id="stuName" required placeholder="Tusaale: Ayaan Maxamed Cali" />
+              </div>
+              <div class="field">
+                <label>Lambarka Ardayga *</label>
+                <input type="text" id="stuRoll" required placeholder="Tusaale: CTY-2026-001" />
+              </div>
+              <div class="field">
+                <label>Fasalka *</label>
+                <select id="stuClass" required>
+                  <option value="Fasalka 8aad">Fasalka 8aad</option>
+                  <option value="F1">F1</option>
+                  <option value="F2">F2</option>
+                  <option value="F3">F3</option>
+                  <option value="F4">F4</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Qaybta *</label>
+                <select id="stuSection" required>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Magaca Waalidka / Masuulka *</label>
+                <input type="text" id="stuParent" required placeholder="Tusaale: Maxamed Cali" />
+              </div>
+              <div class="field">
+                <label>Lambarka WhatsApp-ka Waalidka *</label>
+                <input type="tel" id="stuPhone" required placeholder="Tusaale: 252615000000" />
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button type="submit" class="btn btn-blue" id="btnSaveStu">Kaydi Ardayga</button>
+              <button type="button" class="btn btn-light" onclick="resetStudentForm()">Nadiifi Foomka</button>
+            </div>
+            <div id="stuMsg" class="msg"></div>
+          </form>
+        </div>
+
+        <div class="card card-accent-indigo">
+          <h2>Liiska Ardayda & Raadinta</h2>
+          <div class="grid-3" style="margin-bottom:12px;">
+            <div class="field">
+              <label>Raadi Magac ama Lambar</label>
+              <input type="text" id="searchStu" oninput="renderStudents()" placeholder="Geli magac ama lambar..." />
+            </div>
+            <div class="field">
+              <label>Shaandhee Fasalka</label>
+              <select id="filterClass" onchange="renderStudents()">
+                <option value="">Dhammaan Fasallada</option>
+                <option value="Fasalka 8aad">Fasalka 8aad</option>
+                <option value="F1">F1</option>
+                <option value="F2">F2</option>
+                <option value="F3">F3</option>
+                <option value="F4">F4</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Shaandhee Qaybta</label>
+              <select id="filterSection" onchange="renderStudents()">
+                <option value="">Dhammaan Qaybaha</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Lambar</th>
+                  <th>Magaca Buuxa</th>
+                  <th>Fasal</th>
+                  <th>Qayb</th>
+                  <th>Waalidka</th>
+                  <th>WhatsApp</th>
+                  <th>Ficillo</th>
+                </tr>
+              </thead>
+              <tbody id="studentsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. FASALLADA IYO QAYBAHA -->
+      <div id="pane-classes" class="tab-pane hidden">
+        <div class="card card-accent-indigo">
+          <h2>Maamulka Fasallada (5 Fasal × 4 Qaybood = 20)</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fasalka</th>
+                  <th>Qaybta</th>
+                  <th>Tirada Ardayda</th>
+                  <th>Fur Xaadirinta</th>
+                </tr>
+              </thead>
+              <tbody id="classesBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. WARBIXINNADA XAADIRINTA -->
+      <div id="pane-reports" class="tab-pane hidden">
+        <div class="card card-accent-teal">
+          <h2>Warbixinnada Xaadirinta</h2>
+          <div class="grid-3" style="margin-bottom:12px;">
+            <div class="field">
+              <label>Nooca Warbixinta</label>
+              <select id="repPeriod" onchange="renderReports()">
+                <option value="daily">Maalinle (1 Maalin)</option>
+                <option value="weekly">Toddobaadle (7 Maalmood)</option>
+                <option value="monthly">Bille (30 Maalmood)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Taariikhda Bilowga / Xulashada</label>
+              <input type="date" id="repDate" onchange="renderReports()" />
+            </div>
+            <div class="field">
+              <label>Fasalka</label>
+              <select id="repClass" onchange="renderReports()">
+                <option value="">Dhammaan Fasallada</option>
+                <option value="Fasalka 8aad">Fasalka 8aad</option>
+                <option value="F1">F1</option>
+                <option value="F2">F2</option>
+                <option value="F3">F3</option>
+                <option value="F4">F4</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;" class="no-print">
+            <button type="button" class="btn btn-green" onclick="exportCSV()">Soo Dejiso Excel / CSV</button>
+            <button type="button" class="btn btn-blue" onclick="window.print()">Daabac / Kaydi PDF</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Taariikhda</th>
+                  <th>Lambar</th>
+                  <th>Magaca Ardayga</th>
+                  <th>Fasal / Qayb</th>
+                  <th>Xaaladda</th>
+                </tr>
+              </thead>
+              <tbody id="reportsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. DEJINTA APP-KA & KAYDKA INTERNETKA -->
+      <div id="pane-settings" class="tab-pane hidden">
+        <div class="card card-accent-blue">
+          <h2>Dejinta Dugsiga, Maamulaha & Kaydka Internetka</h2>
+          <form onsubmit="saveSettings(event)">
+            <div class="grid-2">
+              <div class="field">
+                <label>Magaca Dugsiga</label>
+                <input type="text" id="setSchool" required />
+              </div>
+              <div class="field">
+                <label>Gmail-ka Maamulaha (Mulkiilaha)</label>
+                <input type="email" id="setEmail" required />
+              </div>
+              <div class="field">
+                <label>Password Cusub (ka tag bannaan haddii aadan beddelanayn)</label>
+                <input type="password" id="setNewPass" placeholder="Ugu yaraan 4 xaraf" />
+              </div>
+              <div class="field">
+                <label>Cloud Sync Webhook URL (Google Sheets / Make — ikhtiyaari)</label>
+                <input type="url" id="setWebhook" placeholder="https://hook.eu2.make.com/..." />
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button type="submit" class="btn btn-blue">Kaydi Dejimaha</button>
+              <button type="button" class="btn btn-light" onclick="syncToCloud()">Dir Xogta Cloud-ka</button>
+            </div>
+            <div id="setMsg" class="msg"></div>
+          </form>
+        </div>
+
+        <div class="card card-accent-indigo">
+          <h2>Kayd Celis & Dib-u-soo-celin Xogeed (Backup & Restore)</h2>
+          <p style="font-size:0.84rem;color:var(--muted);margin-bottom:10px;">
+            Soo deji fayl JSON ah si xogtaadu aysan u lumin marka aad taleefan beddesho ama app-ka la cusboonaysiiyo.
+          </p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn btn-light" onclick="exportBackup()">Soo Deji Backup (JSON)</button>
+            <input type="file" id="restoreFile" accept=".json,application/json" onchange="importBackup(event)" style="max-width:260px;" />
+          </div>
+          <div id="backupMsg" class="msg"></div>
         </div>
       </div>
     </section>
-
-    <!-- 5. DIIWAANGELINTA ARDAYDA -->
-    <section id="regTab" class="tab-panel hidden">
-      <div class="card">
-        <h2 id="regFormTitle">Ku Dar / Wax Ka Beddel Arday</h2>
-        <input type="hidden" id="editStudentId" />
-        <div class="grid-4">
-          <div>
-            <label>Magaca oo Buuxa</label>
-            <input type="text" id="stName" placeholder="Magaca saddexan" />
-          </div>
-          <div>
-            <label>Student ID</label>
-            <input type="text" id="stCode" placeholder="Tusaale: CTY-101" />
-          </div>
-          <div>
-            <label>Fasalka</label>
-            <select id="stClass">
-              <option value="Class 8">Class 8</option>
-              <option value="Form 1">Form 1</option>
-              <option value="Form 2">Form 2</option>
-              <option value="Form 3">Form 3</option>
-              <option value="Form 4">Form 4</option>
-            </select>
-          </div>
-          <div>
-            <label>Qaybta (Section)</label>
-            <select id="stSection">
-              <option value="Section A">Section A</option>
-              <option value="Section B">Section B</option>
-              <option value="Section C">Section C</option>
-              <option value="Section D">Section D</option>
-            </select>
-          </div>
-          <div>
-            <label>Magaca Waalidka</label>
-            <input type="text" id="stParentName" placeholder="Magaca waalidka" />
-          </div>
-          <div>
-            <label>Lambarka Telefoonka Waalidka (WhatsApp)</label>
-            <input type="tel" id="stParentPhone" placeholder="25261xxxxxxx" />
-          </div>
-          <div>
-            <label>Taariikhda Diiwaangelinta</label>
-            <input type="date" id="stRegDate" />
-          </div>
-          <div>
-            <label>Xaaladda Ardayga</label>
-            <select id="stStatus">
-              <option value="Active">Active</option>
-              <option value="Transferred">Transferred</option>
-            </select>
-          </div>
-        </div>
-        <div class="row-actions" style="margin-top:12px;">
-          <button class="btn btn-blue" onclick="saveStudent()">Kaydi Ardayga</button>
-          <button class="btn btn-outline" onclick="clearStudentForm()">Nadiifi Foomka</button>
-        </div>
-        <p id="regMsg" class="muted" style="margin-top:8px;"></p>
-      </div>
-
-      <div class="card">
-        <h2>Student List &amp; Profile</h2>
-        <div style="overflow-x:auto;">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Magaca</th>
-                <th>Fasalka / Qaybta</th>
-                <th>Waalidka</th>
-                <th>Taariikhda</th>
-                <th>Xaaladda</th>
-                <th>Ficil</th>
-              </tr>
-            </thead>
-            <tbody id="regTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. WARBIXINNO (PDF / PRINT) -->
-    <section id="repTab" class="tab-panel hidden">
-      <div class="card">
-        <h2>
-          <span>Warbixinno (Daily, Weekly, Monthly, Student, Class, Absent, Excused)</span>
-          <button class="btn btn-blue no-print" onclick="window.print()">🖨️ Daabac / Kaydi PDF</button>
-        </h2>
-        <div class="grid-3 no-print">
-          <div>
-            <label>Nooca Warbixinta</label>
-            <select id="repType" onchange="generateReport()">
-              <option value="daily">Daily Attendance Report</option>
-              <option value="weekly">Weekly Attendance Report (7 maalmood)</option>
-              <option value="monthly">Monthly Attendance Report</option>
-              <option value="absent">Absent Students Report (MAQAN)</option>
-              <option value="excused">Excused Students Report (FASAX)</option>
-              <option value="class">Class &amp; Section Attendance Report</option>
-              <option value="student">Student Attendance Report</option>
-            </select>
-          </div>
-          <div>
-            <label>Fasalka (haddii loo baahdo)</label>
-            <select id="repClass" onchange="generateReport()">
-              <option value="ALL">Dhammaan Fasallada</option>
-              <option value="Class 8">Class 8</option>
-              <option value="Form 1">Form 1</option>
-              <option value="Form 2">Form 2</option>
-              <option value="Form 3">Form 3</option>
-              <option value="Form 4">Form 4</option>
-            </select>
-          </div>
-          <div>
-            <label>Arday (Student Report-ka)</label>
-            <select id="repStudent" onchange="generateReport()"></select>
-          </div>
-        </div>
-        <div id="reportContainer" style="margin-top:14px;"></div>
-      </div>
-    </section>
-
-    <!-- 7. OGEYSIISYADA WAALIDKA -->
-    <section id="notifTab" class="tab-panel hidden">
-      <div class="card">
-        <h2>Diiwaanka Ogeysiisyada Waalidka (MAQAN &amp; FASAX)</h2>
-        <p class="muted">
-          Fariimaha WhatsApp-ka waxaa loo diyaariyaa kaliya marka ardayga lagu calaamadiyo <strong>MAQAN</strong> ama <strong>FASAX</strong>. Dirista otomaatiga ah ee buuxda waxay u baahan tahay WhatsApp Business API.
-        </p>
-        <div style="overflow-x:auto;">
-          <table>
-            <thead>
-              <tr>
-                <th>Ardayga</th>
-                <th>Fasalka</th>
-                <th>Taariikhda</th>
-                <th>Xaaladda</th>
-                <th>Waalidka &amp; Lambarka</th>
-                <th>Xaaladda Dirista</th>
-                <th>Ficil</th>
-              </tr>
-            </thead>
-            <tbody id="notifTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- 17 & 18. MAAMULKA SANNAD-DUGSIYEEDKA, PROMOTION, BACKUP & AUDIT LOG -->
-    <section id="sysTab" class="tab-panel hidden">
-      <div class="card">
-        <h2>Sannad-dugsiyeedka (Academic Year) &amp; Student Promotion</h2>
-        <div class="grid-3">
-          <div>
-            <label>Sannad-dugsiyeedka Hadda</label>
-            <input type="text" id="acadYearInput" value="2026/2027" />
-          </div>
-          <div style="display:flex;align-items:flex-end;">
-            <button class="btn btn-blue" onclick="saveAcademicYear()">Kaydi Sannad-dugsiyeedka</button>
-          </div>
-          <div style="display:flex;align-items:flex-end;">
-            <button class="btn btn-present" onclick="promoteStudents()">Gudbi Fasalka Xiga (Promote)</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>Backup, Data Export &amp; Wareejinta Milkiyadda (Ownership Transfer)</h2>
-        <p class="muted">
-          Kaydso nuqul JSON ah (Backup) si aad xogta u ilaaliso ama ugu wareejiso Gmail-ka rasmiga ah ee macallinka marka mashruuca la wareejiyo.
-        </p>
-        <div class="row-actions">
-          <button class="btn btn-blue" onclick="exportBackup()">⬇️ Soo Degso Backup (JSON)</button>
-          <button class="btn btn-outline" onclick="exportCSV()">📄 Soo Saar CSV</button>
-          <button class="btn btn-del" onclick="resetDemoData()">Ku Cel Xogtii Tijaabada</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>Audit Log (Isbeddellada Xogta)</h2>
-        <div id="auditLogBox" class="muted" style="max-height:220px;overflow-y:auto;"></div>
-      </div>
-    </section>
-  </main>
+  </div>
 
   <script>
-    const DB_KEY = 'cty_school_ams_v1';
-    const TODAY = () => new Date().toISOString().slice(0, 10);
+    const CLASSES = ['Fasalka 8aad', 'F1', 'F2', 'F3', 'F4'];
+    const SECTIONS = ['A', 'B', 'C', 'D'];
+    const STORAGE_KEY = 'cty_school_db_v1';
+    const PERSIST_LOGIN_KEY = 'cty_school_logged_in_v1';
 
-    const CLASSES = ['Class 8', 'Form 1', 'Form 2', 'Form 3', 'Form 4'];
-    const SECTIONS = ['Section A', 'Section B', 'Section C', 'Section D'];
-
-    const SEED = {
-      lang: 'so',
-      adminEmail: 'wacanshaqo939@gmail.com', 
-      adminPass: '',
-      loggedIn: false,
-      academicYear: '2026/2027',
-      students: [
-        { id: 1, code: 'CTY-001', name: 'Axmed Cabdi Maxamed', className: 'Class 8', section: 'Section A', parentName: 'Cabdi Maxamed', parentPhone: '252615200001', regDate: TODAY(), status: 'Active' },
-        { id: 2, code: 'CTY-002', name: 'Xaliima Cali Xasan', className: 'Class 8', section: 'Section A', parentName: 'Cali Xasan', parentPhone: '252615200002', regDate: TODAY(), status: 'Active' },
-        { id: 3, code: 'CTY-003', name: 'Cabdiraxmaan Nuur Yuusuf', className: 'Form 1', section: 'Section B', parentName: 'Nuur Yuusuf', parentPhone: '252615200003', regDate: TODAY(), status: 'Active' },
-        { id: 4, code: 'CTY-004', name: 'Sahra Jaamac Warsame', className: 'Form 2', section: 'Section
-  ],
-  attendance: {},
-  auditLog: []
-};
-
-function loadDB() {
-  try {
-    const raw = localStorage.getItem(DB_KEY);
-    if (!raw) {
-      const fresh = JSON.parse(JSON.stringify(SEED));
-      localStorage.setItem(DB_KEY, JSON.stringify(fresh));
-      return fresh;
+    function todayISO() {
+      return new Date().toISOString().slice(0, 10);
     }
-    const parsed = JSON.parse(raw);
-    return {
-      ...JSON.parse(JSON.stringify(SEED)),
-      ...parsed,
-      adminEmail: 'wacanshaqo939@gmail.com',
-      students: Array.isArray(parsed.students) && parsed.students.length ? parsed.students : JSON.parse(JSON.stringify(SEED.students)),
-      attendance: parsed.attendance && typeof parsed.attendance === 'object' ? parsed.attendance : {},
-      auditLog: Array.isArray(parsed.auditLog) ? parsed.auditLog : []
-    };
-  } catch (e) {
-    const fallback = JSON.parse(JSON.stringify(SEED));
-    localStorage.setItem(DB_KEY, JSON.stringify(fallback));
-    return fallback;
-  }
-}
 
-function saveDB() {
-  localStorage.setItem(DB_KEY, JSON.stringify(db));
-}
-
-let db = loadDB();
-
-function findLoginInputs() {
-  const emailEl =
-    document.getElementById('loginEmail') ||
-    document.getElementById('adminEmail') ||
-    document.querySelector('input[type="email"]');
-  const passEl =
-    document.getElementById('loginPass') ||
-    document.getElementById('adminPass') ||
-    document.getElementById('loginPassword') ||
-    document.querySelector('input[type="password"]');
-  const loginBtn =
-    document.getElementById('loginBtn') ||
-    Array.from(document.querySelectorAll('button')).find((b) =>
-      /gal nidaamka|login/i.test(b.textContent || '')
-    );
-  const loginBox =
-    document.getElementById('loginScreen') ||
-    document.getElementById('loginCard') ||
-    document.getElementById('authScreen') ||
-    (loginBtn ? loginBtn.closest('section, div.card, div, form') : null);
-  const appBox =
-    document.getElementById('appScreen') ||
-    document.getElementById('mainApp') ||
-    document.getElementById('dashboard') ||
-    document.querySelector('main');
-  return { emailEl, passEl, loginBtn, loginBox, appBox };
-}
-
-function openAppView() {
-  const { loginBox, appBox } = findLoginInputs();
-  if (loginBox) {
-    loginBox.classList.add('hidden');
-    loginBox.style.display = 'none';
-  }
-  if (appBox) {
-    appBox.classList.remove('hidden');
-    appBox.style.display = '';
-  }
-  if (typeof renderAll === 'function') renderAll();
-  if (typeof renderDashboard === 'function') renderDashboard();
-  if (typeof renderStudents === 'function') renderStudents();
-}
-
-function handleLoginSubmit(event) {
-  if (event && typeof event.preventDefault === 'function') event.preventDefault();
-  const { emailEl, passEl } = findLoginInputs();
-  const enteredEmail = (emailEl ? emailEl.value : '').trim().toLowerCase();
-  const enteredPass = passEl ? passEl.value : '';
-
-  if (enteredEmail !== 'wacanshaqo939@gmail.com') {
-    alert('Isticmaal kaliya Gmail-ka rasmiga ah: wacanshaqo939@gmail.com');
-    return false;
-  }
-  if (!enteredPass) {
-    alert('Fadlan geli Password / PIN cusub.');
-    return false;
-  }
-
-  db.adminEmail = 'wacanshaqo939@gmail.com';
-  if (!db.adminPass) {
-    db.adminPass = enteredPass;
-    db.loggedIn = true;
-    db.auditLog.unshift('Password cusub ayaa la dejiyay: ' + new Date().toLocaleString());
-    saveDB();
-    openAppView();
-    return false;
-  }
-
-  if (enteredPass === db.adminPass) {
-    db.loggedIn = true;
-    saveDB();
-    openAppView();
-    return false;
-  }
-
-  alert('Password / PIN-ku waa khalad.');
-  return false;
-}function loginTeacher() {
-  const emailEl = document.getElementById('loginEmail');
-  const passEl = document.getElementById('loginPass');
-  const msgEl = document.getElementById('loginMsg');
-  const enteredEmail = (emailEl ? emailEl.value : '').trim().toLowerCase();
-  const enteredPass = passEl ? passEl.value : '';
-
-  if (enteredEmail !== 'wacanshaqo939@gmail.com') {
-    if (msgEl) msgEl.textContent = 'Isticmaal kaliya Gmail-ka rasmiga ah: wacanshaqo939@gmail.com';
-    alert('Isticmaal kaliya Gmail-ka rasmiga ah: wacanshaqo939@gmail.com');
-    return false;
-  }
-  if (!enteredPass) {
-    if (msgEl) msgEl.textContent = 'Fadlan geli Password / PIN cusub.';
-    alert('Fadlan geli Password / PIN cusub.');
-    return false;
-  }
-
-  db.adminEmail = 'wacanshaqo939@gmail.com';
-  if (!db.adminPass) {
-    db.adminPass = enteredPass;
-    db.loggedIn = true;
-    db.auditLog.unshift('Password cusub ayaa la dejiyay: ' + new Date().toLocaleString());
-    saveDB();
-  } else if (enteredPass === db.adminPass) {
-    db.loggedIn = true;
-    saveDB();
-  } else {
-    if (msgEl) msgEl.textContent = 'Password / PIN-ku waa khalad.';
-    alert('Password / PIN-ku waa khalad.');
-    return false;
-  }
-
-  if (typeof openAppView === 'function') {
-    openAppView();
-  }
-     const loginSec = document.getElementById('loginView');
-  const dashSec = document.getElementById('dashTab');
-  if (loginSec) {
-    loginSec.classList.add('hidden');
-    loginSec.style.display = 'none';
-  }
-  if (dashSec) {
-    dashSec.classList.remove('hidden');
-    dashSec.style.display = 'block';
-  }
-  return false;
-
-}
- 
- 
-  
-    
-  
-  
-  
-  if (loginBtn) {
-    loginBtn.type = 'button';
-    loginBtn.addEventListener('click', handleLoginSubmit);
-  }
-  if (db.loggedIn && db.adminPass) {
-    openAppView();
-  }
+    function defaultDB() {
+      return {
+        schoolName: 'CTY SCHOOL',
+        adminEmail: 'wacanshaqo939@gmail.com',
+        adminPassHash: '',
+        webhookUrl: '',
+        lang: 'so',
+        students: [],
+        attendance: {}
+      };
     }
-</script>
+
+    function simpleHash(str) {
+      let h = 0;
+      for (let i = 0; i < str.length; i++) {
+        h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+      }
+      return String(h);
+    }
+
+    function loadDB() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return defaultDB();
+        return { ...defaultDB(), ...JSON.parse(raw) };
+      } catch {
+        return defaultDB();
+      }
+    }
+
+    let db = loadDB();
+
+    function saveDB() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+      if (db.webhookUrl) {
+        fetch(db.webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ event: 'cty_school_sync', updatedAt: new Date().toISOString(), db })
+        }).catch(() => {});
+      }
+    }
+
+    function syncToCloud() {
+      const el = document.getElementById('setMsg');
+      if (!db.webhookUrl) {
+        el.className = 'msg err';
+        el.textContent = 'Fadlan marka hore geli Webhook URL.';
+        return;
+      }
+      saveDB();
+      el.className = 'msg ok';
+      el.textContent = 'Xogta waxaa loo diray Webhook-ga.';
+    }
+
+    function applyLang() {
+      const isEn = db.lang === 'en';
+      document.getElementById('btnLang').textContent = isEn ? 'Af-Soomaali' : 'English';
+      document.getElementById('hdrSchoolName').textContent = db.schoolName || 'CTY SCHOOL';
+      document.getElementById('hdrSub').textContent = isEn
+        ? 'STUDENT ATTENDANCE MANAGEMENT SYSTEM · Somalia'
+        : 'NIDAAMKA MAAMULKA XAADIRINTA ARDAYDA · Soomaaliya';
+      document.getElementById('tabDash').textContent = isEn ? 'Dashboard' : 'Bogga Hore';
+      document.getElementById('tabAtt').textContent = isEn ? 'Attendance' : 'Xaadirinta Maanta';
+      document.getElementById('tabStudents').textContent = isEn ? 'Students' : 'Ardayda';
+      document.getElementById('tabClasses').textContent = isEn ? 'Classes' : 'Fasallada & Qaybaha';
+      document.getElementById('tabReports').textContent = isEn ? 'Reports' : 'Warbixinno';
+      document.getElementById('tabSettings').textContent = isEn ? 'Settings' : 'Dejinta';
+      document.getElementById('activeAdminEmail').textContent = db.adminEmail || 'wacanshaqo939@gmail.com';
+    }
+
+    function toggleLang() {
+      db.lang = db.lang === 'so' ? 'en' : 'so';
+      saveDB();
+      applyLang();
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('loginPass').value;
+      const msg = document.getElementById('loginMsg');
+      const ownerEmail = (db.adminEmail || 'wacanshaqo939@gmail.com').toLowerCase();
+
+      if (email !== ownerEmail) {
+        msg.className = 'msg err';
+        msg.textContent = 'Kaliya Gmail-ka rasmiga ah ee maamulaha ayaa geli kara.';
+        return;
+      }
+      if (pass.length < 4) {
+        msg.className = 'msg err';
+        msg.textContent = 'Password-ku waa inuu ka koobnaadaa ugu yaraan 4 xaraf.';
+        return;
+      }
+
+      const hash = simpleHash(pass);
+      if (!db.adminPassHash) {
+        db.adminPassHash = hash;
+        saveDB();
+      } else if (db.adminPassHash !== hash) {
+        msg.className = 'msg err';
+        msg.textContent = 'Password-ku waa khalad.';
+        return;
+      }
+
+      localStorage.setItem(PERSIST_LOGIN_KEY, '1');
+      msg.textContent = '';
+      enterApp();
+    }
+
+    function logoutAdmin() {
+      localStorage.removeItem(PERSIST_LOGIN_KEY);
+      document.getElementById('appView').classList.add('hidden');
+      document.getElementById('loginView').classList.remove('hidden');
+      document.getElementById('btnLogout').classList.add('hidden');
+      document.getElementById('loginPass').value = '';
+    }
+
+    function enterApp() {
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('appView').classList.remove('hidden');
+      document.getElementById('btnLogout').classList.remove('hidden');
+
+      const today = todayISO();
+      if (!document.getElementById('attDate').value) document.getElementById('attDate').value = today;
+      if (!document.getElementById('repDate').value) document.getElementById('repDate').value = today;
+
+      loadSettingsForm();
+      applyLang();
+      renderAll();
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('hidden', p.id !== 'pane-' + tab));
+      renderAll();
+    }
+
+    function renderAll() {
+      renderDashboard();
+      renderAttendanceSheet();
+      renderStudents();
+      renderClasses();
+      renderReports();
+    }
+
+    function renderDashboard() {
+      const dates = Object.keys(db.attendance).sort();
+      const latestDate = dates.length ? dates[dates.length - 1] : todayISO();
+      const dayRec = db.attendance[latestDate] || {};
+
+      let present = 0, absent = 0, excused = 0;
+      db.students.forEach(s => {
+        const st = dayRec[s.id];
+        if (st === 'Jooga') present++;
+        else if (st === 'Maqan') absent++;
+        else if (st === 'Fasax') excused++;
+      });
+
+      const total = db.students.length;
+      const marked = present + absent + excused;
+      const rate = marked > 0 ? Math.round((present / marked) * 100) : 0;
+
+      document.getElementById('stTotal').textContent = total;
+      document.getElementById('stPresent').textContent = present;
+      document.getElementById('stAbsent').textContent = absent;
+      document.getElementById('stExcused').textContent = excused;
+      document.getElementById('stRate').textContent = rate + '%';
+      document.getElementById('stClassesCount').textContent = CLASSES.length * SECTIONS.length;
+      document.getElementById('stLastDate').textContent = dates.length ? latestDate : '-';
+      document.getElementById('attBar').style.width = rate + '%';
+      document.getElementById('barPctLabel').textContent = rate + '%';
+
+      const alertsBody = document.getElementById('parentAlertsBody');
+      const alertStudents = db.students.filter(s => dayRec[s.id] === 'Maqan' || dayRec[s.id] === 'Fasax');
+
+      if (!alertStudents.length) {
+        alertsBody.innerHTML = '<tr><td colspan="5">Ma jiraan arday maqan ama fasax ah xogta hadda kaydsan.</td></tr>';
+        return;
+      }
+
+      alertsBody.innerHTML = alertStudents.map(s => {
+        const status = dayRec[s.id];
+        const msgText = `Asc ${s.parent || 'waalidka ardayga'}. Waxaan ku wargelinaynaa in ardaygaaga ${s.name} (${s.cls} - ${s.section}) uu taariikhda ${latestDate} ahaa ${status}. Fadlan la soco xaadirinta ilmahaaga. Mahadsanid.`;
+        const cleanPhone = (s.phone || '').replace(/\D/g, '');
+        const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgText)}`;
+        const badgeCls = status === 'Maqan' ? 'b-maqan' : 'b-fasax';
+        return `
+          <tr>
+            <td><strong>${esc(s.name)}</strong><br><span style="font-size:0.75rem;color:var(--muted);">${esc(s.roll)}</span></td>
+            <td>${esc(s.cls)} (${esc(s.section)})</td>
+            <td><span class="badge ${badgeCls}">${status}</span></td>
+            <td>${esc(s.parent)}<br><span style="font-size:0.78rem;">${esc(s.phone)}</span></td>
+            <td><a class="btn btn-green btn-sm" target="_blank" rel="noopener" href="${waUrl}">Dir WhatsApp</a></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderAttendanceSheet() {
+      const dateVal = document.getElementById('attDate').value || todayISO();
+      const clsVal = document.getElementById('attClass').value;
+      const secVal = document.getElementById('attSection').value;
+      const body = document.getElementById('attSheetBody');
+
+      const list = db.students.filter(s => s.cls === clsVal && s.section === secVal);
+      const dayRec = db.attendance[dateVal] || {};
+
+      if (!list.length) {
+        body.innerHTML = '<tr><td colspan="4">Arday kuma qorna fasalka iyo qaybta aad dooratay.</td></tr>';
+        return;
+      }
+
+      body.innerHTML = list.map(s => {
+        const cur = dayRec[s.id] || 'Jooga';
+        return `
+          <tr data-sid="${s.id}">
+            <td>${esc(s.roll)}</td>
+            <td>${esc(s.name)}</td>
+            <td>
+              <div class="att-group">
+                ${['Jooga', 'Maqan', 'Fasax'].map(st => `
+                  <button type="button" class="att-opt ${cur === st ? 'sel-' + st : ''}" onclick="setRowStatus(this, '${st}')">${st}</button>
+                `).join('')}
+              </div>
+            </td>
+            <td>${esc(s.phone)}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function setRowStatus(btn, status) {
+      const row = btn.closest('tr');
+      row.querySelectorAll('.att-opt').forEach(b => {
+        b.className = 'att-opt';
+        if (b.textContent === status) b.classList.add('sel-' + status);
+      });
+    }
+
+    function markAll(status) {
+      document.querySelectorAll('#attSheetBody tr[data-sid]').forEach(row => {
+        row.querySelectorAll('.att-opt').forEach(b => {
+          b.className = 'att-opt';
+          if (b.textContent === status) b.classList.add('sel-' + status);
+        });
+      });
+    }
+
+    function saveAttendance() {
+      const dateVal = document.getElementById('attDate').value || todayISO();
+      if (!db.attendance[dateVal]) db.attendance[dateVal] = {};
+
+      document.querySelectorAll('#attSheetBody tr[data-sid]').forEach(row => {
+        const sid = row.dataset.sid;
+        const active = row.querySelector('.att-opt.sel-Jooga, .att-opt.sel-Maqan, .att-opt.sel-Fasax');
+        const status = active ? active.textContent : 'Jooga';
+        db.attendance[dateVal][sid] = status;
+      });
+
+      saveDB();
+      const el = document.getElementById('attSaveMsg');
+      el.className = 'msg ok';
+      el.textContent = `Xaadirinta taariikhda ${dateVal} waa la kaydiyay.`;
+      renderDashboard();
+    }
+
+    function saveStudent(e) {
+      e.preventDefault();
+      const editId = document.getElementById('stuEditId').value;
+      const name = document.getElementById('stuName').value.trim();
+      const roll = document.getElementById('stuRoll').value.trim();
+      const cls = document.getElementById('stuClass').value;
+      const section = document.getElementById('stuSection').value;
+      const parent = document.getElementById('stuParent').value.trim();
+      const phone = document.getElementById('stuPhone').value.trim();
+      const msg = document.getElementById('stuMsg');
+
+      if (!name || !roll || !parent || !phone) {
+        msg.className = 'msg err';
+        msg.textContent = 'Fadlan buuxi dhammaan xogta ardayga.';
+        return;
+      }
+
+      if (editId) {
+        const idx = db.students.findIndex(s => s.id === editId);
+        if (idx !== -1) {
+          db.students[idx] = { id: editId, name, roll, cls, section, parent, phone };
+        }
+      } else {
+        db.students.push({
+          id: 'stu_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+          name, roll, cls, section, parent, phone
+        });
+      }
+
+      saveDB();
+      resetStudentForm();
+      msg.className = 'msg ok';
+      msg.textContent = 'Xogta ardayga waa la kaydiyay.';
+      renderAll();
+    }
+
+    function editStudent(id) {
+      const s = db.students.find(x => x.id === id);
+      if (!s) return;
+      document.getElementById('stuEditId').value = s.id;
+      document.getElementById('stuName').value = s.name;
+      document.getElementById('stuRoll').value = s.roll;
+      document.getElementById('stuClass').value = s.cls;
+      document.getElementById('stuSection').value = s.section;
+      document.getElementById('stuParent').value = s.parent;
+      document.getElementById('stuPhone').value = s.phone;
+      document.getElementById('stuFormTitle').textContent = 'Wax Ka Beddel Xogta Ardayga';
+    }
+
+    function deleteStudent(id) {
+      if (!confirm('Ma hubtaa inaad tirtirto ardaygan?')) return;
+      db.students = db.students.filter(s => s.id !== id);
+      Object.keys(db.attendance).forEach(d => {
+        delete db.attendance[d][id];
+      });
+      saveDB();
+      renderAll();
+    }
+
+    function resetStudentForm() {
+      document.getElementById('studentForm').reset();
+      document.getElementById('stuEditId').value = '';
+      document.getElementById('stuFormTitle').textContent = 'Ku Dar / Wax Ka Beddel Arday';
+    }
+
+    function renderStudents() {
+      const q = (document.getElementById('searchStu').value || '').toLowerCase().trim();
+      const fCls = document.getElementById('filterClass').value;
+      const fSec = document.getElementById('filterSection').value;
+      const body = document.getElementById('studentsBody');
+
+      const filtered = db.students.filter(s => {
+        const matchQ = !q || s.name.toLowerCase().includes(q) || s.roll.toLowerCase().includes(q);
+        const matchCls = !fCls || s.cls === fCls;
+        const matchSec = !fSec || s.section === fSec;
+        return matchQ && matchCls && matchSec;
+      });
+
+      if (!filtered.length) {
+        body.innerHTML = '<tr><td colspan="7">Wax arday ah lama helin.</td></tr>';
+        return;
+      }
+
+      body.innerHTML = filtered.map(s => `
+        <tr>
+          <td>${esc(s.roll)}</td>
+          <td>${esc(s.name)}</td>
+          <td>${esc(s.cls)}</td>
+          <td>${esc(s.section)}</td>
+          <td>${esc(s.parent)}</td>
+          <td>${esc(s.phone)}</td>
+          <td>
+            <button type="button" class="btn btn-light btn-sm" onclick="editStudent('${s.id}')">Beddel</button>
+            <button type="button" class="btn btn-red btn-sm" onclick="deleteStudent('${s.id}')">Tir</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderClasses() {
+      const body = document.getElementById('classesBody');
+      const rows = [];
+      CLASSES.forEach(cls => {
+        SECTIONS.forEach(sec => {
+          const count = db.students.filter(s => s.cls === cls && s.section === sec).length;
+          rows.push(`
+            <tr>
+              <td>${esc(cls)}</td>
+              <td>${esc(sec)}</td>
+              <td><strong>${count}</strong></td>
+              <td>
+                <button type="button" class="btn btn-blue btn-sm" onclick="openClassAttendance('${cls}', '${sec}')">Fur Xaadirinta</button>
+              </td>
+            </tr>
+          `);
+        });
+      });
+      body.innerHTML = rows.join('');
+    }
+
+    function openClassAttendance(cls, sec) {
+      document.getElementById('attClass').value = cls;
+      document.getElementById('attSection').value = sec;
+      switchTab('att');
+    }
+
+    function getFilteredReportRows() {
+      const period = document.getElementById('repPeriod').value;
+      const baseDate = document.getElementById('repDate').value || todayISO();
+      const clsFilter = document.getElementById('repClass').value;
+
+      const daysSpan = period === 'weekly' ? 7 : period === 'monthly' ? 30 : 1;
+      const endMs = new Date(baseDate + 'T23:59:59').getTime();
+      const startMs = endMs - (daysSpan - 1) * 86400000;
+
+      const stuMap = Object.fromEntries(db.students.map(s => [s.id, s]));
+      const out = [];
+
+      Object.keys(db.attendance).sort().reverse().forEach(d => {
+        const dMs = new Date(d + 'T12:00:00').getTime();
+        if (dMs < startMs || dMs > endMs) return;
+        const rec = db.attendance[d] || {};
+        Object.entries(rec).forEach(([sid, status]) => {
+          const s = stuMap[sid];
+          if (!s) return;
+          if (clsFilter && s.cls !== clsFilter) return;
+          out.push({ date: d, roll: s.roll, name: s.name, cls: `${s.cls} (${s.section})`, status });
+        });
+      });
+
+      return out;
+    }
+
+    function renderReports() {
+      const body = document.getElementById('reportsBody');
+      const rows = getFilteredReportRows();
+      if (!rows.length) {
+        body.innerHTML = '<tr><td colspan="5">Xog xaadirin ah kuma jirto xulashadan.</td></tr>';
+        return;
+      }
+      body.innerHTML = rows.map(r => `
+        <tr>
+          <td>${esc(r.date)}</td>
+          <td>${esc(r.roll)}</td>
+          <td>${esc(r.name)}</td>
+          <td>${esc(r.cls)}</td>
+          <td><span class="badge b-${r.status.toLowerCase()}">${r.status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    function exportCSV() {
+      const rows = getFilteredReportRows();
+      const header = ['Taariikhda', 'Lambarka', 'Magaca Ardayga', 'Fasal / Qayb', 'Xaaladda'];
+      const lines = [
+        header.join(','),
+        ...rows.map(r => [r.date, r.roll, r.name, r.cls, r.status].map(v => `"${String(v).replace(/"/g, '""')}"`).join(','))
+      ];
+      const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cty-school-warbixin-${todayISO()}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function loadSettingsForm() {
+      document.getElementById('setSchool').value = db.schoolName || 'CTY SCHOOL';
+      document.getElementById('setEmail').value = db.adminEmail || 'wacanshaqo939@gmail.com';
+      document.getElementById('setWebhook').value = db.webhookUrl || '';
+      document.getElementById('setNewPass').value = '';
+    }
+
+    function saveSettings(e) {
+      e.preventDefault();
+      const school = document.getElementById('setSchool').value.trim();
+      const email = document.getElementById('setEmail').value.trim().toLowerCase();
+      const newPass = document.getElementById('setNewPass').value;
+      const webhook = document.getElementById('setWebhook').value.trim();
+      const msg = document.getElementById('setMsg');
+
+      if (!school || !email) {
+        msg.className = 'msg err';
+        msg.textContent = 'Magaca dugsiga iyo Gmail-ka waa lagama maarmaan.';
+        return;
+      }
+
+      db.schoolName = school;
+      db.adminEmail = email;
+      db.webhookUrl = webhook;
+      if (newPass) {
+        if (newPass.length < 4) {
+          msg.className = 'msg err';
+          msg.textContent = 'Password-ka cusub waa inuu ka koobnaadaa ugu yaraan 4 xaraf.';
+          return;
+        }
+        db.adminPassHash = simpleHash(newPass);
+      }
+
+      saveDB();
+      applyLang();
+      msg.className = 'msg ok';
+      msg.textContent = 'Dejimaha dugsiga iyo maamulaha waa la kaydiyay.';
+    }
+
+    function exportBackup() {
+      const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cty-school-backup-${todayISO()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importBackup(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          db = { ...defaultDB(), ...parsed };
+          saveDB();
+          loadSettingsForm();
+          applyLang();
+          renderAll();
+          const el = document.getElementById('backupMsg');
+          el.className = 'msg ok';
+          el.textContent = 'Xogta waa dib loo soo celiyay.';
+        } catch {
+          const el = document.getElementById('backupMsg');
+          el.className = 'msg err';
+          el.textContent = 'Faylka JSON ma saxna.';
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function esc(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    applyLang();
+    if (localStorage.getItem(PERSIST_LOGIN_KEY) === '1' && db.adminPassHash) {
+      enterApp();
+    }
+  </script>
 </body>
 </html>
-  
-  
