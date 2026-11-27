@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.wacanshaqo939.ctyschool",
+    "sha256_cert_fingerprints": [
+      "9F:B3:9D:86:9A:6C:BA:4F:D8:8A:A7:D1:DB:FD:C8:43:A9:90:D8:42:1A:C1:AE:B5:25:F4:26:88:79:20:79:D9"
+    ]
+  }
+}]
