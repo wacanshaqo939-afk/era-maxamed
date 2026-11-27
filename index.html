@@ -102,51 +102,123 @@
     .login-box { max-width: 440px; margin: 28px auto; border-top: 4px solid var(--blue-bright); }
     h2 { font-size: 1.05rem; color: var(--blue-royal); margin-bottom: 10px; }
 
+    /* KAARARKA MACALLINKA & BLUE TICK CAD */
     .admin-bar {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      background: linear-gradient(90deg, #e8f3ff 0%, #f0f7ff 100%);
-      border: 1px solid #bdd9f8;
-      border-radius: 12px;
-      padding: 10px 14px;
+      gap: 12px;
+      background: linear-gradient(90deg, #e3f2fd 0%, #f3f9ff 100%);
+      border: 1.5px solid #90caf9;
+      border-radius: 14px;
+      padding: 12px 14px;
       margin-bottom: 14px;
-      font-size: 0.84rem;
+      font-size: 0.85rem;
     }
-    .blue-tick-badge {
+    .admin-identity {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .admin-avatar-wrap {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+    }
+    .admin-avatar-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid var(--blue-tick);
+      background: #fff;
+      display: block;
+    }
+    .admin-avatar-fallback {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-royal), var(--blue-bright));
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2.5px solid var(--blue-tick);
+    }
+    .avatar-tick-corner {
+      position: absolute;
+      right: -2px;
+      bottom: -2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--blue-tick);
+      color: #fff;
+      border: 2px solid #fff;
+      font-size: 0.75rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .blue-tick-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #e3f2fd;
-      color: var(--blue-royal);
-      border: 1px solid #90caf9;
-      padding: 4px 10px;
+      background: var(--blue-tick);
+      color: #fff;
+      padding: 4px 11px;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.78rem;
+      letter-spacing: 0.2px;
+      box-shadow: 0 2px 6px rgba(29, 155, 240, 0.35);
     }
-    .blue-tick-icon {
+    .blue-tick-check {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 17px;
       height: 17px;
       border-radius: 50%;
-      background: var(--blue-tick);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 800;
+      background: #fff;
+      color: var(--blue-tick);
+      font-size: 0.78rem;
+      font-weight: 900;
     }
     .persist-tag {
       background: var(--ok-bg);
       color: var(--ok);
       border: 1px solid var(--ok-border);
-      padding: 3px 9px;
+      padding: 4px 10px;
       border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 700;
+    }
+
+    .profile-preview-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--blue-sky);
+      border: 1px solid #bbdefb;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+    .profile-preview-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--blue-tick);
+      background: #fff;
     }
 
     .field { margin-bottom: 11px; }
@@ -316,12 +388,22 @@
     <!-- NIDAAMKA GUDAHA -->
     <section id="appView" class="hidden">
       <div class="admin-bar">
-        <div>
-          <span class="blue-tick-badge" id="adminVerifiedBadge">
-            <span class="blue-tick-icon">✓</span>
-            <span>Maamulaha La Xaqiijiyay</span>
-          </span>
-          <span style="margin-left:8px;font-weight:600;" id="activeAdminEmail">wacanshaqo939@gmail.com</span>
+        <div class="admin-identity">
+          <div class="admin-avatar-wrap">
+            <img id="adminTopAvatarImg" class="admin-avatar-img hidden" alt="Profile Macallinka" />
+            <div id="adminTopAvatarFallback" class="admin-avatar-fallback">M</div>
+            <span class="avatar-tick-corner" title="Blue Tick">✓</span>
+          </div>
+          <div>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:7px;">
+              <strong id="activeTeacherLabel">Macallinka Maamulaha</strong>
+              <span class="blue-tick-pill" id="adminVerifiedBadge">
+                <span class="blue-tick-check">✓</span>
+                <span>BLUE TICK · LA XAQIIJIYAY</span>
+              </span>
+            </div>
+            <div style="font-size:0.8rem;color:var(--muted);font-weight:600;margin-top:2px;" id="activeAdminEmail">wacanshaqo939@gmail.com</div>
+          </div>
         </div>
         <span class="persist-tag" id="autoLoginStatus">Gelitaan Toos Ah</span>
       </div>
@@ -597,15 +679,38 @@
         </div>
       </div>
 
-      <!-- 6. DEJINTA APP-KA & KAYDKA INTERNETKA -->
+      <!-- 6. DEJINTA APP-KA, PROFILE-KA MACALLINKA & KAYDKA INTERNETKA -->
       <div id="pane-settings" class="tab-pane hidden">
         <div class="card card-accent-blue">
-          <h2>Dejinta Dugsiga, Maamulaha & Kaydka Internetka</h2>
+          <h2>Profile-ka Macallinka, Dejinta Dugsiga & Wareejinta Lahaanshaha</h2>
+
+          <div class="profile-preview-box">
+            <img id="setProfilePreview" class="profile-preview-img hidden" alt="Sawirka Macallinka" />
+            <div id="setProfileFallback" class="admin-avatar-fallback" style="width:64px;height:64px;font-size:1.25rem;">M</div>
+            <div style="flex:1;">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:4px;">
+                <strong id="setTeacherPreviewName">Macallinka Maamulaha</strong>
+                <span class="blue-tick-pill"><span class="blue-tick-check">✓</span><span>BLUE TICK</span></span>
+              </div>
+              <div style="font-size:0.78rem;color:var(--muted);margin-bottom:6px;">
+                Macallinku wuxuu saari karaa sawir profile ah (PNG/JPG) oo muuqanaya gudaha app-ka.
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+                <input type="file" id="setPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" style="max-width:250px;" />
+                <button type="button" class="btn btn-light btn-sm" onclick="removeTeacherPhoto()">Ka Saar Sawirka</button>
+              </div>
+            </div>
+          </div>
+
           <form onsubmit="saveSettings(event)">
             <div class="grid-2">
               <div class="field">
                 <label>Magaca Dugsiga</label>
                 <input type="text" id="setSchool" required />
+              </div>
+              <div class="field">
+                <label>Magaca Macallinka Maamulaha</label>
+                <input type="text" id="setTeacherName" placeholder="Tusaale: Macallin Maxamed" />
               </div>
               <div class="field">
                 <label>Gmail-ka Maamulaha (Mulkiilaha)</label>
@@ -631,7 +736,7 @@
         <div class="card card-accent-indigo">
           <h2>Kayd Celis & Dib-u-soo-celin Xogeed (Backup & Restore)</h2>
           <p style="font-size:0.84rem;color:var(--muted);margin-bottom:10px;">
-            Soo deji fayl JSON ah si xogtaadu aysan u lumin marka aad taleefan beddesho ama app-ka la cusboonaysiiyo.
+            Soo deji fayl JSON ah si xogtaadu (oo ay ku jirto sawirka profile-ka, ardayda, iyo xaadirintu) aysan u lumin marka aad taleefan beddesho ama app-ka loo wareejiyo macallinka.
           </p>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
             <button type="button" class="btn btn-light" onclick="exportBackup()">Soo Deji Backup (JSON)</button>
@@ -656,6 +761,8 @@
     function defaultDB() {
       return {
         schoolName: 'CTY SCHOOL',
+        teacherName: 'Macallinka Maamulaha',
+        teacherPhoto: '',
         adminEmail: 'wacanshaqo939@gmail.com',
         adminPassHash: '',
         webhookUrl: '',
@@ -708,6 +815,64 @@
       el.textContent = 'Xogta waxaa loo diray Webhook-ga.';
     }
 
+    function renderTeacherIdentity() {
+      const tName = (db.teacherName || 'Macallinka Maamulaha').trim();
+      const email = db.adminEmail || 'wacanshaqo939@gmail.com';
+      const initial = (tName[0] || email[0] || 'M').toUpperCase();
+
+      document.getElementById('activeTeacherLabel').textContent = tName;
+      document.getElementById('activeAdminEmail').textContent = email;
+      document.getElementById('setTeacherPreviewName').textContent = tName;
+
+      const topImg = document.getElementById('adminTopAvatarImg');
+      const topFb = document.getElementById('adminTopAvatarFallback');
+      const setImg = document.getElementById('setProfilePreview');
+      const setFb = document.getElementById('setProfileFallback');
+
+      topFb.textContent = initial;
+      setFb.textContent = initial;
+
+      if (db.teacherPhoto) {
+        topImg.src = db.teacherPhoto;
+        topImg.classList.remove('hidden');
+        topFb.classList.add('hidden');
+        setImg.src = db.teacherPhoto;
+        setImg.classList.remove('hidden');
+        setFb.classList.add('hidden');
+      } else {
+        topImg.classList.add('hidden');
+        topFb.classList.remove('hidden');
+        setImg.classList.add('hidden');
+        setFb.classList.remove('hidden');
+      }
+    }
+
+    function handlePhotoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        db.teacherPhoto = reader.result;
+        saveDB();
+        renderTeacherIdentity();
+        const el = document.getElementById('setMsg');
+        el.className = 'msg ok';
+        el.textContent = 'Sawirka profile-ka macallinka waa la kaydiyay.';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeTeacherPhoto() {
+      db.teacherPhoto = '';
+      const inp = document.getElementById('setPhotoInput');
+      if (inp) inp.value = '';
+      saveDB();
+      renderTeacherIdentity();
+      const el = document.getElementById('setMsg');
+      el.className = 'msg ok';
+      el.textContent = 'Sawirka profile-ka waa laga saaray.';
+    }
+
     function applyLang() {
       const isEn = db.lang === 'en';
       document.getElementById('btnLang').textContent = isEn ? 'Af-Soomaali' : 'English';
@@ -721,7 +886,7 @@
       document.getElementById('tabClasses').textContent = isEn ? 'Classes' : 'Fasallada & Qaybaha';
       document.getElementById('tabReports').textContent = isEn ? 'Reports' : 'Warbixinno';
       document.getElementById('tabSettings').textContent = isEn ? 'Settings' : 'Dejinta';
-      document.getElementById('activeAdminEmail').textContent = db.adminEmail || 'wacanshaqo939@gmail.com';
+      renderTeacherIdentity();
     }
 
     function toggleLang() {
@@ -1109,14 +1274,17 @@
 
     function loadSettingsForm() {
       document.getElementById('setSchool').value = db.schoolName || 'CTY SCHOOL';
+      document.getElementById('setTeacherName').value = db.teacherName || 'Macallinka Maamulaha';
       document.getElementById('setEmail').value = db.adminEmail || 'wacanshaqo939@gmail.com';
       document.getElementById('setWebhook').value = db.webhookUrl || '';
       document.getElementById('setNewPass').value = '';
+      renderTeacherIdentity();
     }
 
     function saveSettings(e) {
       e.preventDefault();
       const school = document.getElementById('setSchool').value.trim();
+      const teacherName = document.getElementById('setTeacherName').value.trim() || 'Macallinka Maamulaha';
       const email = document.getElementById('setEmail').value.trim().toLowerCase();
       const newPass = document.getElementById('setNewPass').value;
       const webhook = document.getElementById('setWebhook').value.trim();
@@ -1129,6 +1297,7 @@
       }
 
       db.schoolName = school;
+      db.teacherName = teacherName;
       db.adminEmail = email;
       db.webhookUrl = webhook;
       if (newPass) {
@@ -1143,7 +1312,7 @@
       saveDB();
       applyLang();
       msg.className = 'msg ok';
-      msg.textContent = 'Dejimaha dugsiga iyo maamulaha waa la kaydiyay.';
+      msg.textContent = 'Dejimaha dugsiga, profile-ka macallinka, iyo lahaanshaha waa la kaydiyay.';
     }
 
     function exportBackup() {
