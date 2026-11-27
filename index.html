@@ -630,7 +630,20 @@
     }
 
     applyLang();
-    if (localStorage.getItem(LG_K) === '1' && db.adminPassHash) enterApp();
+    
+  
+    
+  if (localStorage.getItem(LG_K) === '1' && db.adminPassHash) enterApp();
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/era-maxamed/sw.js');
+    });
+  }
+
+
+
+
+
   </script>
 </body>
 </html>
