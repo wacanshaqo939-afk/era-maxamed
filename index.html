@@ -1,123 +1,120 @@
-      margin-bottom: 14px;
-      font-size: 0.85rem;
+<!DOCTYPE html>
+<html lang="so">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d47a1" />
+  <title>CTY SCHOOL — Nidaamka Maamulka Xaadirinta Ardayda</title>
+  <style>
+    :root {
+      --blue-deep: #072856;
+      --blue-main: #0d47a1;
+      --blue-bright: #1976d2;
+      --blue-sky: #e3f2fd;
+      --tick-blue: #1d9bf0;
+      --bg: #f4f8fd;
+      --card: #ffffff;
+      --text: #0c2340;
+      --muted: #546e8a;
+      --line: #cfe0f5;
+      --ok: #15803d;
+      --ok-bg: #dcfce7;
+      --ok-border: #86efac;
+      --bad: #b91c1c;
+      --bad-bg: #fee2e2;
+      --bad-border: #fca5a5;
+      --warn: #b45309;
+      --warn-bg: #fef3c7;
+      --warn-border: #fcd34d;
     }
-    .admin-identity {
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: linear-gradient(180deg, #e7f1fc 0%, var(--bg) 55%, #ffffff 100%);
+      color: var(--text);
+      line-height: 1.45;
+      padding-bottom: 40px;
+      min-height: 100vh;
+    }
+
+    .hidden { display: none !important; }
+
+    header {
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-main), var(--blue-bright));
+      color: #ffffff;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 4px 16px rgba(7, 40, 86, 0.16);
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand-row { display: flex; align-items: center; gap: 12px; }
+
+    .cty-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 0.95rem;
       display: flex;
       align-items: center;
-      gap: 11px;
-    }
-    .admin-avatar-wrap {
-      : relative;
-      width: 50px;
-      height: 50px;
+      justify-content: center;
       flex-shrink: 0;
     }
-    .admin-avatar-img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2.5px solid var(--blue-tick);
-      background: #fff;
-      display: block;
-    }
-    .admin-avatar-fallback {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue-royal), var(--blue-bright));
-      color: #fff;
-      font-weight: 800;
-      font-size: 1.05rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2.5px solid var(--blue-tick);
-    }
-    .avatar-tick-corner {
-      position: absolute;
-      right: -2px;
-      bottom: -2px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--blue-tick);
-      color: #fff;
-      border: 2px solid #fff;
-      font-size: 0.75rem;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-    .blue-tick-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--blue-tick);
-      color: #fff;
-      padding: 4px 11px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 0.78rem;
-      letter-spacing: 0.2px;
-      box-shadow: 0 2px 6px rgba(29, 155, 240, 0.35);
-    }
-    .blue-tick-check {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
-      background: #fff;
-      color: var(--blue-tick);
-      font-size: 0.78rem;
-      font-weight: 900;
-    }
-    .persist-tag {
-      background: var(--ok-bg);
-      color: var(--ok);
-      border: 1px solid var(--ok-border);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
+
+    .brand h1 { font-size: 1.2rem; font-weight: 800; letter-spacing: 0.3px; }
+    .brand p { font-size: 0.78rem; opacity: 0.92; }
+
+    .header-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+    .container { max-width: 1120px; margin: 18px auto 0; padding: 0 14px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(13, 71, 161, 0.05);
     }
 
-    .profile-preview-box {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--blue-sky);
-      border: 1px solid #bbdefb;
-      border-radius: 12px;
-      padding: 10px 12px;
-      margin-bottom: 12px;
-    }
-    .profile-preview-img {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--blue-tick);
-      background: #fff;
-    }
+    .login-box { max-width: 430px; margin: 36px auto; }
+
+    h2 { font-size: 1.05rem; margin-bottom: 10px; color: var(--blue-main); font-weight: 800; }
 
     .field { margin-bottom: 11px; }
-    label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+    label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+
     input, select {
       width: 100%;
       padding: 9px 11px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--line);
       border-radius: 9px;
       font-size: 0.92rem;
-      background: #fff;
+      background: #ffffff;
       color: var(--text);
     }
-    input:focus, select:focus { outline: 2px solid var(--blue-bright); border-color: var(--blue-bright); }
+
+    input:focus, select:focus {
+      outline: 2px solid var(--blue-bright);
+      border-color: var(--blue-bright);
+    }
 
     .btn {
       display: inline-flex;
@@ -128,105 +125,183 @@
       border: none;
       border-radius: 9px;
       font-size: 0.86rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       text-decoration: none;
     }
-    .btn-blue { background: var(--blue-bright); color: #fff; }
-    .btn-blue:hover { background: var(--blue-royal); }
-    .btn-teal { background: var(--teal); color: #fff; }
-    .btn-light { background: var(--blue-sky); color: var(--blue-royal); border: 1px solid #c5dff8; }
-    .btn-green { background: var(--ok); color: #fff; }
-    .btn-red { background: var(--bad); color: #fff; }
-    .btn-sm { padding: 5px 10px; font-size: 0.78rem; }
 
-    .msg { margin-top: 8px; font-size: 0.84rem; font-weight: 600; }
+    .btn-primary { background: var(--blue-bright); color: #ffffff; }
+    .btn-primary:hover { background: var(--blue-main); }
+    .btn-green { background: var(--ok); color: #ffffff; }
+    .btn-red { background: var(--bad); color: #ffffff; }
+    .btn-light { background: var(--blue-sky); color: var(--blue-deep); border: 1px solid var(--line); }
+    .btn-sm { padding: 5px 9px; font-size: 0.78rem; }
+
+    .msg { margin-top: 8px; font-size: 0.84rem; font-weight: 700; }
     .msg.err { color: var(--bad); }
     .msg.ok { color: var(--ok); }
 
-    .nav-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 14px;
-    }
+    .nav-tabs { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
     .tab-btn {
-      background: #fff;
-      color: var(--blue-royal);
-      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--blue-deep);
+      border: 1px solid var(--line);
       padding: 8px 13px;
-      border-radius: 10px;
+      border-radius: 9px;
       font-size: 0.84rem;
       font-weight: 700;
       cursor: pointer;
     }
     .tab-btn.active {
-      background: linear-gradient(135deg, var(--blue-royal), var(--blue-bright));
-      color: #fff;
-      border-color: var(--blue-royal);
-      box-shadow: 0 2px 6px rgba(25, 118, 210, 0.25);
+      background: linear-gradient(135deg, var(--blue-main), var(--blue-bright));
+      color: #ffffff;
+      border-color: var(--blue-main);
     }
 
-    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 10px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
 
     .stat {
+      border: 1px solid var(--line);
       border-radius: 12px;
       padding: 13px;
-      border: 1px solid var(--border);
+      background: #ffffff;
     }
-    .stat-blue { background: #edf5ff; border-color: #c6defa; }
-    .stat-green { background: var(--ok-bg); border-color: var(--ok-border); }
-    .stat-red { background: var(--bad-bg); border-color: var(--bad-border); }
-    .stat-amber { background: var(--warn-bg); border-color: var(--warn-border); }
-    .stat-teal { background: var(--teal-bg); border-color: #99d5cf; }
-    .stat-indigo { background: var(--indigo-bg); border-color: #c5cae9; }
+    .stat.stat-blue { background: #f0f7ff; border-color: #b6d4fe; }
+    .stat.stat-green { background: var(--ok-bg); border-color: var(--ok-border); }
+    .stat.stat-red { background: var(--bad-bg); border-color: var(--bad-border); }
+    .stat.stat-amber { background: var(--warn-bg); border-color: var(--warn-border); }
+    .stat .num { font-size: 1.45rem; font-weight: 800; color: var(--blue-deep); }
+    .stat .lbl { font-size: 0.78rem; color: var(--muted); font-weight: 700; margin-top: 2px; }
 
-    .stat .num { font-size: 1.45rem; font-weight: 800; color: var(--text); }
-    .stat-green .num { color: var(--ok); }
-    .stat-red .num { color: var(--bad); }
-    .stat-amber .num { color: var(--warn); }
-    .stat-blue .num { color: var(--blue-royal); }
-    .stat-teal .num { color: var(--teal); }
-    .stat-indigo .num { color: var(--indigo); }
-    .stat .lbl { font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+    .admin-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+    }
+
+    .admin-identity { display: flex; align-items: center; gap: 11px; }
+
+    .admin-avatar-wrap {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+    }
+
+    .admin-avatar-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid #ffffff;
+      box-shadow: 0 0 0 2px var(--tick-blue);
+      background: #ffffff;
+      display: block;
+    }
+
+    .admin-avatar-fallback {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2.5px solid #ffffff;
+      box-shadow: 0 0 0 2px var(--tick-blue);
+    }
+
+    .avatar-tick-corner {
+      position: absolute;
+      right: -2px;
+      bottom: -2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #5cc8ff 0%, var(--tick-blue) 60%, #0b74d1 100%);
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(29, 155, 240, 0.4);
+    }
+
+    .blue-tick-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #5cc8ff 0%, var(--tick-blue) 60%, #0b74d1 100%);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      vertical-align: middle;
+      margin-left: 4px;
+      box-shadow: 0 2px 6px rgba(29, 155, 240, 0.35);
+    }
+
+    .persist-tag {
+      background: var(--blue-sky);
+      color: var(--blue-main);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .profile-preview-box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      background: #f0f7ff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
 
     .table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-    th, td {
-      padding: 9px 8px;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-      white-space: nowrap;
-    }
-    th { background: #f2f7fd; color: var(--blue-royal); font-weight: 700; }
+    th, td { padding: 9px 8px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+    th { background: #eef6ff; color: var(--blue-deep); font-weight: 800; }
 
-    .badge { padding: 3px 9px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; display: inline-block; }
+    .badge { padding: 3px 9px; border-radius: 999px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
     .b-jooga { background: var(--ok-bg); color: var(--ok); }
     .b-maqan { background: var(--bad-bg); color: var(--bad); }
     .b-fasax { background: var(--warn-bg); color: var(--warn); }
 
     .att-group { display: flex; gap: 5px; }
-    .att-opt {
-      padding: 4px 9px;
-      border-radius: 7px;
-      border: 1px solid var(--border);
-      font-size: 0.76rem;
-      font-weight: 600;
-      cursor: pointer;
-      background: #fff;
-    }
-    .att-opt.sel-Jooga { background: var(--ok); color: #fff; border-color: var(--ok); }
-    .att-opt.sel-Maqan { background: var(--bad); color: #fff; border-color: var(--bad); }
-    .att-opt.sel-Fasax { background: var(--warn); color: #fff; border-color: var(--warn); }
+    .att-opt { padding: 4px 8px; border-radius: 7px; border: 1px solid var(--line); font-size: 0.76rem; font-weight: 700; cursor: pointer; background: #ffffff; }
+    .att-opt.sel-Jooga { background: var(--ok); color: #ffffff; border-color: var(--ok); }
+    .att-opt.sel-Maqan { background: var(--bad); color: #ffffff; border-color: var(--bad); }
+    .att-opt.sel-Fasax { background: var(--warn); color: #ffffff; border-color: var(--warn); }
 
     .bar-bg { width: 100%; height: 13px; background: #dcebfa; border-radius: 999px; overflow: hidden; margin-top: 6px; }
-    .bar-fill { height: 100%; background: linear-gradient(90deg, var(--blue-bright), var(--teal)); transition: width 0.25s; }
+    .bar-fill { height: 100%; background: linear-gradient(90deg, var(--blue-bright), var(--tick-blue)); transition: width 0.25s; }
 
     @media print {
       header, .nav-tabs, .admin-bar, .no-print { display: none !important; }
-      body { background: #fff; }
+      body { background: #ffffff; padding-bottom: 0; }
       .card { box-shadow: none; border: 1px solid #ccc; }
     }
   </style>
@@ -235,25 +310,25 @@
   <header>
     <div class="header-inner">
       <div class="brand-row">
-        <div class="school-crest">CTY</div>
+        <div class="cty-badge">CTY</div>
         <div class="brand">
-          <h1 id="hdrSchoolName">CTY SCHOOL</h1>
-          <p id="hdrSub">NIDAAMKA MAAMULKA XAADIRINTA ARDAYDA · Soomaaliya</p>
+          <h1 id="hdrSchoolName">CTY SCHOOL <span class="blue-tick-check" title="Verified">✓</span></h1>
+          <p id="hdrSub">Nidaamka Maamulka Xaadirinta Ardayda · Soomaaliya</p>
         </div>
       </div>
-      <div class="top-actions">
-        <button type="button" class="pill-btn" onclick="toggleLang()" id="btnLang">English</button>
-        <button type="button" class="pill-btn" onclick="exportBackup()" id="btnBackup">Kayd Celis (JSON)</button>
-        <button type="button" class="pill-btn pill-exit hidden" onclick="logoutAdmin()" id="btnLogout">Ka Bax</button>
+      <div class="header-actions no-print">
+        <button type="button" class="btn btn-light btn-sm" onclick="installAppPrompt()">Soo Degso App-ka</button>
+        <button type="button" class="btn btn-light btn-sm" onclick="toggleLang()" id="langBtn">English</button>
+        <button type="button" class="btn btn-light btn-sm" onclick="exportBackup()">Kayd Celis (JSON)</button>
+        <button type="button" class="btn btn-red btn-sm hidden" id="logoutBtn" onclick="logoutAdmin()">Ka Bax</button>
       </div>
     </div>
   </header>
 
   <div class="container">
-    <!-- GELITAANKA MAAMULKA -->
     <section id="loginView" class="card login-box">
-      <h2 id="loginTitle">Gelitaanka Maamulaha (Admin)</h2>
-      <p style="font-size:0.84rem;color:var(--muted);margin-bottom:12px;" id="loginHint">
+      <h2>Gelitaanka Maamulaha (Admin)</h2>
+      <p style="font-size:0.84rem;color:var(--muted);margin-bottom:12px;">
         Gmail-ka rasmiga ah: <strong>wacanshaqo939@gmail.com</strong>. Marka aad gasho si toos ah ayuu kuu sii haynayaa.
       </p>
       <form id="loginForm" onsubmit="handleLogin(event)">
@@ -262,71 +337,84 @@
           <input type="email" id="loginEmail" value="wacanshaqo939@gmail.com" required />
         </div>
         <div class="field">
-          <label for="loginPass" id="lblPass">Password</label>
+          <label for="loginPass">Password</label>
           <input type="password" id="loginPass" placeholder="Geli password-kaaga (4+ xaraf)" required />
         </div>
-        <button type="submit" class="btn btn-blue" style="width:100%;" id="btnLogin">Gal Nidaamka (Login)</button>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Gal Nidaamka (Login)</button>
         <div id="loginMsg" class="msg"></div>
       </form>
     </section>
 
-    <!-- NIDAAMKA GUDAHA -->
     <section id="appView" class="hidden">
-      <div class="admin-bar">
+      <div class="admin-bar no-print">
         <div class="admin-identity">
           <div class="admin-avatar-wrap">
             <img id="adminTopAvatarImg" class="admin-avatar-img hidden" alt="Profile Macallinka" />
             <div id="adminTopAvatarFallback" class="admin-avatar-fallback">M</div>
-            <span class="avatar-tick-corner" title="Blue Tick">✓</span>
+            <span class="avatar-tick-corner" title="Verified Admin">✓</span>
           </div>
           <div>
-            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:7px;">
-              <strong id="activeTeacherLabel">Macallinka Maamulaha</strong>
-              <span class="blue-tick-pill" id="adminVerifiedBadge">
-                <span class="blue-tick-check">✓</span>
-                <span>BLUE TICK · LA XAQIIJIYAY</span>
-              </span>
+            <div>
+              <strong id="activeTeacherLabel">Macalin aqiyaar</strong>
+              <span style="color:var(--muted);font-size:0.82rem;">(<span id="activeRoleText">Macallin / Maamulaha</span>)</span>
+              <span class="blue-tick-check" title="Verified">✓</span>
             </div>
-            <div style="font-size:0.8rem;color:var(--muted);font-weight:600;margin-top:2px;" id="activeAdminEmail">wacanshaqo939@gmail.com</div>
+            <div style="font-size:0.8rem;color:var(--blue-main);font-weight:700;" id="activeAdminEmail">wacanshaqo939@gmail.com</div>
           </div>
         </div>
-        <span class="persist-tag" id="autoLoginStatus">Gelitaan Toos Ah</span>
+        <span class="persist-tag">Gelitaan Toos Ah · Kaydcelis: JSON</span>
       </div>
 
-      <div class="nav-tabs no-print">
-        <button type="button" class="tab-btn active" data-tab="dash" onclick="switchTab('dash')" id="tabDash">Bogga Hore</button>
-        <button type="button" class="tab-btn" data-tab="att" onclick="switchTab('att')" id="tabAtt">Xaadirinta Maanta</button>
-        <button type="button" class="tab-btn" data-tab="students" onclick="switchTab('students')" id="tabStudents">Ardayda</button>
-        <button type="button" class="tab-btn" data-tab="classes" onclick="switchTab('classes')" id="tabClasses">Fasallada & Qaybaha</button>
-        <button type="button" class="tab-btn" data-tab="reports" onclick="switchTab('reports')" id="tabReports">Warbixinno</button>
-        <button type="button" class="tab-btn" data-tab="settings" onclick="switchTab('settings')" id="tabSettings">Dejinta</button>
-      </div>
+      <nav class="nav-tabs no-print">
+        <button type="button" class="tab-btn active" data-tab="dash" onclick="switchTab('dash')">Bogga Hore</button>
+        <button type="button" class="tab-btn" data-tab="att" onclick="switchTab('att')">Xaadirinta Maanta</button>
+        <button type="button" class="tab-btn" data-tab="students" onclick="switchTab('students')">Ardayda</button>
+        <button type="button" class="tab-btn" data-tab="classes" onclick="switchTab('classes')">Fasallada &amp; Qaybaha</button>
+        <button type="button" class="tab-btn" data-tab="reports" onclick="switchTab('reports')">Warbixinno</button>
+        <button type="button" class="tab-btn" data-tab="settings" onclick="switchTab('settings')">Dejinta</button>
+      </nav>
 
-      <!-- 1. BOGGA HORE -->
       <div id="pane-dash" class="tab-pane">
-        <div class="card card-accent-blue">
-          <h2 id="dashHeading">Dashboard — 2026/2027</h2>
-          <div class="grid-4" style="margin-bottom:12px;">
-            <div class="stat stat-blue"><div class="num" id="stTotal">0</div><div class="lbl">Tirada Guud ee Ardayda</div></div>
-            <div class="stat stat-green"><div class="num" id="stPresent">0</div><div class="lbl">Ardayda Maanta Joogta</div></div>
-            <div class="stat stat-red"><div class="num" id="stAbsent">0</div><div class="lbl">Ardayda Maanta Maqan</div></div>
-            <div class="stat stat-amber"><div class="num" id="stExcused">0</div><div class="lbl">Ardayda Fasaxa Ah</div></div>
-          </div>
-          <div class="grid-3">
-            <div class="stat stat-teal"><div class="num" id="stRate">0%</div><div class="lbl">Boqolleyda Xaadirinta Maanta</div></div>
-            <div class="stat stat-indigo"><div class="num" id="stClassesCount">20</div><div class="lbl">Fasallada & Qaybaha (5 × 4)</div></div>
-            <div class="stat stat-blue"><div class="num" id="stLastDate">-</div><div class="lbl">Xaadirintii Ugu Dambeysay</div></div>
-          </div>
-          <div style="margin-top:14px;">
-            <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:700;">
-              <span>Heerka Xaadirinta Maanta</span>
-              <span id="barPctLabel">0%</span>
+        <div class="card">
+          <h2>Dashboard — 2026/2027</h2>
+          <div class="grid-4">
+            <div class="stat stat-blue">
+              <div class="num" id="stTotal">0</div>
+              <div class="lbl">Tirada Guud ee Ardayda</div>
             </div>
-            <div class="bar-bg"><div class="bar-fill" id="attBar" style="width:0%;"></div></div>
+            <div class="stat stat-green">
+              <div class="num" id="stPresent">0</div>
+              <div class="lbl">Ardayda Maanta Joogta</div>
+            </div>
+            <div class="stat stat-red">
+              <div class="num" id="stAbsent">0</div>
+              <div class="lbl">Ardayda Maanta Maqan</div>
+            </div>
+            <div class="stat stat-amber">
+              <div class="num" id="stExcused">0</div>
+              <div class="lbl">Ardayda Fasaxa Ah</div>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-top:10px;">
+            <div class="stat">
+              <div class="num" id="stRate">0%</div>
+              <div class="lbl">Boqolleyda Xaadirinta Maanta</div>
+            </div>
+            <div class="stat">
+              <div class="num">20</div>
+              <div class="lbl">Fasallada &amp; Qaybaha (5 × 4)</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--muted);">
+              <span>Xaadirintii Ugu Dambeysay: <strong id="stLastDate">-</strong></span>
+              <span>Heerka Xaadirinta Maanta</span>
+            </div>
+            <div class="bar-bg"><div class="bar-fill" id="stRateBar" style="width:0%;"></div></div>
           </div>
         </div>
 
-        <div class="card card-accent-warn">
+        <div class="card">
           <h2>Ogeysiisyada Waalidka (Maqan / Fasax Maanta)</h2>
           <div class="table-wrap">
             <table>
@@ -335,7 +423,7 @@
                   <th>Ardayga</th>
                   <th>Fasal / Qayb</th>
                   <th>Xaaladda</th>
-                  <th>Waalidka & WhatsApp</th>
+                  <th>Waalidka &amp; WhatsApp</th>
                   <th>Farriinta</th>
                 </tr>
               </thead>
@@ -345,9 +433,8 @@
         </div>
       </div>
 
-      <!-- 2. XAADIRINTA MAALINLAHA AH -->
       <div id="pane-att" class="tab-pane hidden">
-        <div class="card card-accent-teal">
+        <div class="card">
           <h2>Xaadirinta Maalinlaha Ah</h2>
           <div class="grid-3" style="margin-bottom:12px;">
             <div class="field">
@@ -376,10 +463,10 @@
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
             <button type="button" class="btn btn-light btn-sm" onclick="markAll('Jooga')">Dhammaan Jooga</button>
-            <button type="button" class="btn btn-teal" onclick="saveAttendance()">Kaydi Xaadirinta</button>
+            <button type="button" class="btn btn-green" onclick="saveAttendance()">Kaydi Xaadirinta</button>
           </div>
           <div id="attSaveMsg" class="msg"></div>
-          <div class="table-wrap" style="margin-top:8px;">
+          <div class="table-wrap">
             <table>
               <thead>
                 <tr>
@@ -395,10 +482,9 @@
         </div>
       </div>
 
-      <!-- 3. MAAMULKA ARDAYDA -->
       <div id="pane-students" class="tab-pane hidden">
-        <div class="card card-accent-blue">
-          <h2 id="stuFormTitle">Ku Dar / Wax Ka Beddel Arday</h2>
+        <div class="card">
+          <h2 id="stuFormTitle">Diiwaangelinta Arday Cusub</h2>
           <form id="studentForm" onsubmit="saveStudent(event)">
             <input type="hidden" id="stuEditId" />
             <div class="grid-3">
@@ -439,15 +525,15 @@
               </div>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <button type="submit" class="btn btn-blue" id="btnSaveStu">Kaydi Ardayga</button>
+              <button type="submit" class="btn btn-primary">Kaydi Ardayga</button>
               <button type="button" class="btn btn-light" onclick="resetStudentForm()">Nadiifi Foomka</button>
             </div>
             <div id="stuMsg" class="msg"></div>
           </form>
         </div>
 
-        <div class="card card-accent-indigo">
-          <h2>Liiska Ardayda & Raadinta</h2>
+        <div class="card">
+          <h2>Liiska Ardayda &amp; Raadinta</h2>
           <div class="grid-3" style="margin-bottom:12px;">
             <div class="field">
               <label>Raadi Magac ama Lambar</label>
@@ -494,10 +580,9 @@
         </div>
       </div>
 
-      <!-- 4. FASALLADA IYO QAYBAHA -->
       <div id="pane-classes" class="tab-pane hidden">
-        <div class="card card-accent-indigo">
-          <h2>Maamulka Fasallada (5 Fasal × 4 Qaybood = 20)</h2>
+        <div class="card">
+          <h2>Fasallada &amp; Qaybaha (5 Fasal × 4 Qaybood = 20)</h2>
           <div class="table-wrap">
             <table>
               <thead>
@@ -514,9 +599,8 @@
         </div>
       </div>
 
-      <!-- 5. WARBIXINNADA XAADIRINTA -->
       <div id="pane-reports" class="tab-pane hidden">
-        <div class="card card-accent-teal">
+        <div class="card">
           <h2>Warbixinnada Xaadirinta</h2>
           <div class="grid-3" style="margin-bottom:12px;">
             <div class="field">
@@ -528,7 +612,7 @@
               </select>
             </div>
             <div class="field">
-              <label>Taariikhda Bilowga / Xulashada</label>
+              <label>Taariikhda</label>
               <input type="date" id="repDate" onchange="renderReports()" />
             </div>
             <div class="field">
@@ -545,7 +629,7 @@
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;" class="no-print">
             <button type="button" class="btn btn-green" onclick="exportCSV()">Soo Dejiso Excel / CSV</button>
-            <button type="button" class="btn btn-blue" onclick="window.print()">Daabac / Kaydi PDF</button>
+            <button type="button" class="btn btn-primary" onclick="window.print()">Daabac / Kaydi PDF</button>
           </div>
           <div class="table-wrap">
             <table>
@@ -564,24 +648,23 @@
         </div>
       </div>
 
-      <!-- 6. DEJINTA APP-KA, PROFILE-KA MACALLINKA & KAYDKA INTERNETKA -->
       <div id="pane-settings" class="tab-pane hidden">
-        <div class="card card-accent-blue">
-          <h2>Profile-ka Macallinka, Dejinta Dugsiga & Wareejinta Lahaanshaha</h2>
+        <div class="card">
+          <h2>Dejinta Dugsiga &amp; Profile-ka Macallinka</h2>
 
           <div class="profile-preview-box">
-            <img id="setProfilePreview" class="profile-preview-img hidden" alt="Sawirka Macallinka" />
-            <div id="setProfileFallback" class="admin-avatar-fallback" style="width:64px;height:64px;font-size:1.25rem;">M</div>
-            <div style="flex:1;">
-              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:4px;">
-                <strong id="setTeacherPreviewName">Macallinka Maamulaha</strong>
-                <span class="blue-tick-pill"><span class="blue-tick-check">✓</span><span>BLUE TICK</span></span>
+            <div class="admin-avatar-wrap" style="width:60px;height:60px;">
+              <img id="setProfilePreview" class="admin-avatar-img hidden" style="width:60px;height:60px;" alt="Sawirka Macallinka" />
+              <div id="setProfileFallback" class="admin-avatar-fallback" style="width:60px;height:60px;font-size:1.2rem;">M</div>
+              <span class="avatar-tick-corner" title="Verified Admin">✓</span>
+            </div>
+            <div style="flex:1;min-width:200px;">
+              <div style="font-weight:800;">
+                <span id="setTeacherPreviewName">Macalin aqiyaar</span>
+                <span class="blue-tick-check" title="Verified">✓</span>
               </div>
-              <div style="font-size:0.78rem;color:var(--muted);margin-bottom:6px;">
-                Macallinku wuxuu saari karaa sawir profile ah (PNG/JPG) oo muuqanaya gudaha app-ka.
-              </div>
-              <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
-                <input type="file" id="setPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" style="max-width:250px;" />
+              <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px;">
+                <input type="file" id="setPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" style="max-width:240px;" />
                 <button type="button" class="btn btn-light btn-sm" onclick="removeTeacherPhoto()">Ka Saar Sawirka</button>
               </div>
             </div>
@@ -595,7 +678,7 @@
               </div>
               <div class="field">
                 <label>Magaca Macallinka Maamulaha</label>
-                <input type="text" id="setTeacherName" placeholder="Tusaale: Macallin Maxamed" />
+                <input type="text" id="setTeacherName" />
               </div>
               <div class="field">
                 <label>Gmail-ka Maamulaha (Mulkiilaha)</label>
@@ -606,28 +689,18 @@
                 <input type="password" id="setNewPass" placeholder="Ugu yaraan 4 xaraf" />
               </div>
               <div class="field">
-                <label>Cloud Sync Webhook URL (Google Sheets / Make — ikhtiyaari)</label>
+                <label>Cloud Sync Webhook URL (ikhtiyaari)</label>
                 <input type="url" id="setWebhook" placeholder="https://hook.eu2.make.com/..." />
               </div>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <button type="submit" class="btn btn-blue">Kaydi Dejimaha</button>
-              <button type="button" class="btn btn-light" onclick="syncToCloud()">Dir Xogta Cloud-ka</button>
+              <button type="submit" class="btn btn-primary">Kaydi Dejimaha</button>
+              <button type="button" class="btn btn-light" onclick="exportBackup()">Soo Deji Backup (JSON)</button>
+              <input type="file" id="restoreFile" accept=".json,application/json" onchange="importBackup(event)" style="max-width:220px;" />
             </div>
             <div id="setMsg" class="msg"></div>
+            <div id="backupMsg" class="msg"></div>
           </form>
-        </div>
-
-        <div class="card card-accent-indigo">
-          <h2>Kayd Celis & Dib-u-soo-celin Xogeed (Backup & Restore)</h2>
-          <p style="font-size:0.84rem;color:var(--muted);margin-bottom:10px;">
-            Soo deji fayl JSON ah si xogtaadu (oo ay ku jirto sawirka profile-ka, ardayda, iyo xaadirintu) aysan u lumin marka aad taleefan beddesho ama app-ka loo wareejiyo macallinka.
-          </p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-            <button type="button" class="btn btn-light" onclick="exportBackup()">Soo Deji Backup (JSON)</button>
-            <input type="file" id="restoreFile" accept=".json,application/json" onchange="importBackup(event)" style="max-width:260px;" />
-          </div>
-          <div id="backupMsg" class="msg"></div>
         </div>
       </div>
     </section>
@@ -639,6 +712,21 @@
     const STORAGE_KEY = 'cty_school_db_v1';
     const PERSIST_LOGIN_KEY = 'cty_school_logged_in_v1';
 
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    function installAppPrompt() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt = null;
+      } else {
+        alert('Si aad app-ka u soo degsato: Chrome/Browser-ka ka fur Menu (⋮) → "Add to Home screen" ama "Install app".');
+      }
+    }
+
     function todayISO() {
       return new Date().toISOString().slice(0, 10);
     }
@@ -646,7 +734,7 @@
     function defaultDB() {
       return {
         schoolName: 'CTY SCHOOL',
-        teacherName: 'Macallinka Maamulaha',
+        teacherName: 'Macalin aqiyaar',
         teacherPhoto: '',
         adminEmail: 'wacanshaqo939@gmail.com',
         adminPassHash: '',
@@ -688,20 +776,8 @@
       }
     }
 
-    function syncToCloud() {
-      const el = document.getElementById('setMsg');
-      if (!db.webhookUrl) {
-        el.className = 'msg err';
-        el.textContent = 'Fadlan marka hore geli Webhook URL.';
-        return;
-      }
-      saveDB();
-      el.className = 'msg ok';
-      el.textContent = 'Xogta waxaa loo diray Webhook-ga.';
-    }
-
     function renderTeacherIdentity() {
-      const tName = (db.teacherName || 'Macallinka Maamulaha').trim();
+      const tName = (db.teacherName || 'Macalin aqiyaar').trim();
       const email = db.adminEmail || 'wacanshaqo939@gmail.com';
       const initial = (tName[0] || email[0] || 'M').toUpperCase();
 
@@ -760,17 +836,12 @@
 
     function applyLang() {
       const isEn = db.lang === 'en';
-      document.getElementById('btnLang').textContent = isEn ? 'Af-Soomaali' : 'English';
-      document.getElementById('hdrSchoolName').textContent = db.schoolName || 'CTY SCHOOL';
+      const sName = db.schoolName || 'CTY SCHOOL';
+      document.getElementById('hdrSchoolName').innerHTML = `${esc(sName)} <span class="blue-tick-check" title="Verified">✓</span>`;
       document.getElementById('hdrSub').textContent = isEn
-        ? 'STUDENT ATTENDANCE MANAGEMENT SYSTEM · Somalia'
-        : 'NIDAAMKA MAAMULKA XAADIRINTA ARDAYDA · Soomaaliya';
-      document.getElementById('tabDash').textContent = isEn ? 'Dashboard' : 'Bogga Hore';
-      document.getElementById('tabAtt').textContent = isEn ? 'Attendance' : 'Xaadirinta Maanta';
-      document.getElementById('tabStudents').textContent = isEn ? 'Students' : 'Ardayda';
-      document.getElementById('tabClasses').textContent = isEn ? 'Classes' : 'Fasallada & Qaybaha';
-      document.getElementById('tabReports').textContent = isEn ? 'Reports' : 'Warbixinno';
-      document.getElementById('tabSettings').textContent = isEn ? 'Settings' : 'Dejinta';
+        ? 'Student Attendance Management System · Somalia'
+        : 'Nidaamka Maamulka Xaadirinta Ardayda · Soomaaliya';
+      document.getElementById('langBtn').textContent = isEn ? 'Soomaali' : 'English';
       renderTeacherIdentity();
     }
 
@@ -816,15 +887,15 @@
     function logoutAdmin() {
       localStorage.removeItem(PERSIST_LOGIN_KEY);
       document.getElementById('appView').classList.add('hidden');
+      document.getElementById('logoutBtn').classList.add('hidden');
       document.getElementById('loginView').classList.remove('hidden');
-      document.getElementById('btnLogout').classList.add('hidden');
       document.getElementById('loginPass').value = '';
     }
 
     function enterApp() {
       document.getElementById('loginView').classList.add('hidden');
       document.getElementById('appView').classList.remove('hidden');
-      document.getElementById('btnLogout').classList.remove('hidden');
+      document.getElementById('logoutBtn').classList.remove('hidden');
 
       const today = todayISO();
       if (!document.getElementById('attDate').value) document.getElementById('attDate').value = today;
@@ -836,8 +907,8 @@
     }
 
     function switchTab(tab) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
       document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('hidden', p.id !== 'pane-' + tab));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
       renderAll();
     }
 
@@ -871,10 +942,8 @@
       document.getElementById('stAbsent').textContent = absent;
       document.getElementById('stExcused').textContent = excused;
       document.getElementById('stRate').textContent = rate + '%';
-      document.getElementById('stClassesCount').textContent = CLASSES.length * SECTIONS.length;
+      document.getElementById('stRateBar').style.width = rate + '%';
       document.getElementById('stLastDate').textContent = dates.length ? latestDate : '-';
-      document.getElementById('attBar').style.width = rate + '%';
-      document.getElementById('barPctLabel').textContent = rate + '%';
 
       const alertsBody = document.getElementById('parentAlertsBody');
       const alertStudents = db.students.filter(s => dayRec[s.id] === 'Maqan' || dayRec[s.id] === 'Fasax');
@@ -1032,7 +1101,7 @@
     function resetStudentForm() {
       document.getElementById('studentForm').reset();
       document.getElementById('stuEditId').value = '';
-      document.getElementById('stuFormTitle').textContent = 'Ku Dar / Wax Ka Beddel Arday';
+      document.getElementById('stuFormTitle').textContent = 'Diiwaangelinta Arday Cusub';
     }
 
     function renderStudents() {
@@ -1081,7 +1150,7 @@
               <td>${esc(sec)}</td>
               <td><strong>${count}</strong></td>
               <td>
-                <button type="button" class="btn btn-blue btn-sm" onclick="openClassAttendance('${cls}', '${sec}')">Fur Xaadirinta</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="openClassAttendance('${cls}', '${sec}')">Fur Xaadirinta</button>
               </td>
             </tr>
           `);
@@ -1159,7 +1228,7 @@
 
     function loadSettingsForm() {
       document.getElementById('setSchool').value = db.schoolName || 'CTY SCHOOL';
-      document.getElementById('setTeacherName').value = db.teacherName || 'Macallinka Maamulaha';
+      document.getElementById('setTeacherName').value = db.teacherName || 'Macalin aqiyaar';
       document.getElementById('setEmail').value = db.adminEmail || 'wacanshaqo939@gmail.com';
       document.getElementById('setWebhook').value = db.webhookUrl || '';
       document.getElementById('setNewPass').value = '';
@@ -1169,7 +1238,7 @@
     function saveSettings(e) {
       e.preventDefault();
       const school = document.getElementById('setSchool').value.trim();
-      const teacherName = document.getElementById('setTeacherName').value.trim() || 'Macallinka Maamulaha';
+      const teacherName = document.getElementById('setTeacherName').value.trim() || 'Macalin aqiyaar';
       const email = document.getElementById('setEmail').value.trim().toLowerCase();
       const newPass = document.getElementById('setNewPass').value;
       const webhook = document.getElementById('setWebhook').value.trim();
@@ -1249,4 +1318,3 @@
   </script>
 </body>
 </html>
-
