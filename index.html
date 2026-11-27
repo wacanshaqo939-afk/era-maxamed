@@ -4,529 +4,292 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0d47a1" />
-  <title>CTY SCHOOL — Nidaamka Maamulka Xaadirinta Ardayda</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>CTY SCHOOL</title>
+  <link
+    rel="manifest"
+    href="data:application/json,%7B%22name%22%3A%22CTY%20SCHOOL%22%2C%22short_name%22%3A%22CTY%20SCHOOL%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f4f8fd%22%2C%22theme_color%22%3A%22%230d47a1%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20192%20192%27%253E%253Crect%20width%3D%27192%27%20height%3D%27192%27%20rx%3D%2738%27%20fill%3D%27%25230d47a1%27%2F%253E%253Ctext%20x%3D%2796%27%20y%3D%27118%27%20font-family%3D%27sans-serif%27%20font-size%3D%2764%27%20font-weight%3D%27900%27%20fill%3D%27%2523ffffff%27%20text-anchor%3D%27middle%27%3ECTY%3C%2Ftext%3E%253C%2Fsvg%3E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D"
+  />
   <style>
     :root {
-      --blue-deep: #072856;
-      --blue-main: #0d47a1;
-      --blue-bright: #1976d2;
-      --blue-sky: #e3f2fd;
-      --tick-blue: #1d9bf0;
+      --b1: #072856;
+      --b2: #0d47a1;
+      --b3: #1976d2;
+      --sky: #e3f2fd;
+      --tick: #1d9bf0;
       --bg: #f4f8fd;
       --card: #ffffff;
-      --text: #0c2340;
-      --muted: #546e8a;
+      --txt: #0c2340;
+      --mut: #546e8a;
       --line: #cfe0f5;
       --ok: #15803d;
-      --ok-bg: #dcfce7;
-      --ok-border: #86efac;
+      --okbg: #dcfce7;
       --bad: #b91c1c;
-      --bad-bg: #fee2e2;
-      --bad-border: #fca5a5;
+      --badbg: #fee2e2;
       --warn: #b45309;
-      --warn-bg: #fef3c7;
-      --warn-border: #fcd34d;
+      --warnbg: #fef3c7;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       background: linear-gradient(180deg, #e7f1fc 0%, var(--bg) 55%, #ffffff 100%);
-      color: var(--text);
+      color: var(--txt);
       line-height: 1.45;
       padding-bottom: 40px;
       min-height: 100vh;
     }
-
     .hidden { display: none !important; }
-
     header {
-      background: linear-gradient(135deg, var(--blue-deep), var(--blue-main), var(--blue-bright));
-      color: #ffffff;
-      padding: 16px;
+      background: linear-gradient(135deg, var(--b1), var(--b2), var(--b3));
+      color: #fff;
+      padding: 15px 16px;
       position: sticky;
       top: 0;
       z-index: 20;
       box-shadow: 0 4px 16px rgba(7, 40, 86, 0.16);
     }
-
-    .header-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+    .h-in { max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+    .h-left { display: flex; align-items: center; gap: 12px; }
+    .logo-box {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: rgba(255,255,255,0.16); border: 1.5px solid rgba(255,255,255,0.45);
+      display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.95rem; flex-shrink: 0;
     }
-
-    .brand-row { display: flex; align-items: center; gap: 12px; }
-
-    .cty-badge {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1.5px solid rgba(255, 255, 255, 0.45);
-      color: #ffffff;
-      font-weight: 900;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .brand h1 { font-size: 1.2rem; font-weight: 800; letter-spacing: 0.3px; }
-    .brand p { font-size: 0.78rem; opacity: 0.92; }
-
-    .header-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-
-    .container { max-width: 1120px; margin: 18px auto 0; padding: 0 14px; }
-
+    header h1 { font-size: 1.18rem; font-weight: 800; }
+    header p { font-size: 0.78rem; opacity: 0.92; }
+    .h-btns { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+    .wrap { max-width: 1120px; margin: 18px auto 0; padding: 0 14px; }
     .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 4px 14px rgba(13, 71, 161, 0.05);
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 16px; margin-bottom: 14px; box-shadow: 0 4px 14px rgba(13, 71, 161, 0.05);
     }
-
-    .login-box { max-width: 430px; margin: 36px auto; }
-
-    h2 { font-size: 1.05rem; margin-bottom: 10px; color: var(--blue-main); font-weight: 800; }
-
+    .login-card { max-width: 430px; margin: 34px auto; }
+    h2 { font-size: 1.05rem; color: var(--b2); margin-bottom: 10px; font-weight: 800; }
     .field { margin-bottom: 11px; }
-    label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: var(--text); }
-
+    label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; color: var(--txt); }
     input, select {
-      width: 100%;
-      padding: 9px 11px;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      font-size: 0.92rem;
-      background: #ffffff;
-      color: var(--text);
+      width: 100%; padding: 9px 11px; border: 1px solid var(--line);
+      border-radius: 9px; font-size: 0.92rem; background: #fff; color: var(--txt);
     }
-
-    input:focus, select:focus {
-      outline: 2px solid var(--blue-bright);
-      border-color: var(--blue-bright);
-    }
-
+    input:focus, select:focus { outline: 2px solid var(--b3); border-color: var(--b3); }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 9px 14px;
-      border: none;
-      border-radius: 9px;
-      font-size: 0.86rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 9px 14px; border: none; border-radius: 9px; font-size: 0.85rem;
+      font-weight: 700; cursor: pointer; text-decoration: none;
     }
-
-    .btn-primary { background: var(--blue-bright); color: #ffffff; }
-    .btn-primary:hover { background: var(--blue-main); }
-    .btn-green { background: var(--ok); color: #ffffff; }
-    .btn-red { background: var(--bad); color: #ffffff; }
-    .btn-light { background: var(--blue-sky); color: var(--blue-deep); border: 1px solid var(--line); }
-    .btn-sm { padding: 5px 9px; font-size: 0.78rem; }
-
-    .msg { margin-top: 8px; font-size: 0.84rem; font-weight: 700; }
-    .msg.err { color: var(--bad); }
-    .msg.ok { color: var(--ok); }
-
-    .nav-tabs { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
-    .tab-btn {
-      background: #ffffff;
-      color: var(--blue-deep);
-      border: 1px solid var(--line);
-      padding: 8px 13px;
-      border-radius: 9px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      cursor: pointer;
+    .btn-b { background: var(--b3); color: #fff; }
+    .btn-b:hover { background: var(--b2); }
+    .btn-g { background: var(--ok); color: #fff; }
+    .btn-r { background: var(--bad); color: #fff; }
+    .btn-w { background: var(--sky); color: var(--b1); border: 1px solid var(--line); }
+    .btn-sm { padding: 5px 9px; font-size: 0.77rem; }
+    .msg { margin-top: 8px; font-size: 0.83rem; font-weight: 700; }
+    .err { color: var(--bad); }
+    .ok { color: var(--ok); }
+    .tabs { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+    .tab {
+      background: #fff; color: var(--b1); border: 1px solid var(--line);
+      padding: 8px 13px; border-radius: 9px; font-size: 0.84rem; font-weight: 700; cursor: pointer;
     }
-    .tab-btn.active {
-      background: linear-gradient(135deg, var(--blue-main), var(--blue-bright));
-      color: #ffffff;
-      border-color: var(--blue-main);
+    .tab.active { background: linear-gradient(135deg, var(--b2), var(--b3)); color: #fff; border-color: var(--b2); }
+    .g4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+    .g3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+    .g2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .st { border: 1px solid var(--line); border-radius: 12px; padding: 13px; background: #fff; }
+    .st-b { background: #f0f7ff; border-color: #b6d4fe; }
+    .st-g { background: var(--okbg); border-color: #86efac; }
+    .st-r { background: var(--badbg); border-color: #fca5a5; }
+    .st-a { background: var(--warnbg); border-color: #fcd34d; }
+    .st .n { font-size: 1.45rem; font-weight: 800; color: var(--b1); }
+    .st .l { font-size: 0.78rem; color: var(--mut); font-weight: 700; margin-top: 2px; }
+    .admin-box {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 12px;
+      padding: 11px 14px; margin-bottom: 12px; font-size: 0.85rem;
     }
-
-    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
-
-    .stat {
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 13px;
-      background: #ffffff;
+    .adm-left { display: flex; align-items: center; gap: 11px; }
+    .av-wrap { position: relative; width: 50px; height: 50px; flex-shrink: 0; }
+    .av-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2.5px solid #fff; box-shadow: 0 0 0 2px var(--tick); display: block; }
+    .av-fb {
+      width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--b1), var(--b3));
+      color: #fff; font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; justify-content: center;
+      border: 2.5px solid #fff; box-shadow: 0 0 0 2px var(--tick);
     }
-    .stat.stat-blue { background: #f0f7ff; border-color: #b6d4fe; }
-    .stat.stat-green { background: var(--ok-bg); border-color: var(--ok-border); }
-    .stat.stat-red { background: var(--bad-bg); border-color: var(--bad-border); }
-    .stat.stat-amber { background: var(--warn-bg); border-color: var(--warn-border); }
-    .stat .num { font-size: 1.45rem; font-weight: 800; color: var(--blue-deep); }
-    .stat .lbl { font-size: 0.78rem; color: var(--muted); font-weight: 700; margin-top: 2px; }
-
-    .admin-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      background: #ffffff;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 10px 14px;
-      margin-bottom: 12px;
-      font-size: 0.85rem;
+    .av-dot {
+      position: absolute; right: -2px; bottom: -2px; width: 20px; height: 20px; border-radius: 50%;
+      background: var(--tick); color: #fff; border: 2px solid #fff; font-size: 0.72rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .admin-identity { display: flex; align-items: center; gap: 11px; }
-
-    .admin-avatar-wrap {
-      position: relative;
-      width: 50px;
-      height: 50px;
-      flex-shrink: 0;
+    .tick {
+      display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--tick); color: #fff; font-size: 0.72rem; font-weight: 900;
+      vertical-align: middle; margin-left: 4px;
     }
-
-    .admin-avatar-img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2.5px solid #ffffff;
-      box-shadow: 0 0 0 2px var(--tick-blue);
-      background: #ffffff;
-      display: block;
+    .tag-ok {
+      background: var(--sky); color: var(--b2); border: 1px solid var(--line);
+      padding: 4px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700;
     }
-
-    .admin-avatar-fallback {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
-      color: #ffffff;
-      font-size: 1.05rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2.5px solid #ffffff;
-      box-shadow: 0 0 0 2px var(--tick-blue);
-    }
-
-    .avatar-tick-corner {
-      position: absolute;
-      right: -2px;
-      bottom: -2px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 25%, #5cc8ff 0%, var(--tick-blue) 60%, #0b74d1 100%);
-      color: #ffffff;
-      border: 2px solid #ffffff;
-      font-size: 0.72rem;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 6px rgba(29, 155, 240, 0.4);
-    }
-
-    .blue-tick-check {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 25%, #5cc8ff 0%, var(--tick-blue) 60%, #0b74d1 100%);
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 900;
-      vertical-align: middle;
-      margin-left: 4px;
-      box-shadow: 0 2px 6px rgba(29, 155, 240, 0.35);
-    }
-
-    .persist-tag {
-      background: var(--blue-sky);
-      color: var(--blue-main);
-      border: 1px solid var(--line);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    .profile-preview-box {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      background: #f0f7ff;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 10px 12px;
-      margin-bottom: 12px;
-    }
-
-    .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .t-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
     th, td { padding: 9px 8px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
-    th { background: #eef6ff; color: var(--blue-deep); font-weight: 800; }
-
-    .badge { padding: 3px 9px; border-radius: 999px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
-    .b-jooga { background: var(--ok-bg); color: var(--ok); }
-    .b-maqan { background: var(--bad-bg); color: var(--bad); }
-    .b-fasax { background: var(--warn-bg); color: var(--warn); }
-
-    .att-group { display: flex; gap: 5px; }
-    .att-opt { padding: 4px 8px; border-radius: 7px; border: 1px solid var(--line); font-size: 0.76rem; font-weight: 700; cursor: pointer; background: #ffffff; }
-    .att-opt.sel-Jooga { background: var(--ok); color: #ffffff; border-color: var(--ok); }
-    .att-opt.sel-Maqan { background: var(--bad); color: #ffffff; border-color: var(--bad); }
-    .att-opt.sel-Fasax { background: var(--warn); color: #ffffff; border-color: var(--warn); }
-
-    .bar-bg { width: 100%; height: 13px; background: #dcebfa; border-radius: 999px; overflow: hidden; margin-top: 6px; }
-    .bar-fill { height: 100%; background: linear-gradient(90deg, var(--blue-bright), var(--tick-blue)); transition: width 0.25s; }
-
+    th { background: #eef6ff; color: var(--b1); font-weight: 800; }
+    .bdg { padding: 3px 9px; border-radius: 999px; font-size: 0.75rem; font-weight: 800; display: inline-block; }
+    .b-jooga { background: var(--okbg); color: var(--ok); }
+    .b-maqan { background: var(--badbg); color: var(--bad); }
+    .b-fasax { background: var(--warnbg); color: var(--warn); }
+    .att-g { display: flex; gap: 5px; }
+    .att-b { padding: 4px 8px; border-radius: 7px; border: 1px solid var(--line); font-size: 0.76rem; font-weight: 700; cursor: pointer; background: #fff; }
+    .sel-Jooga { background: var(--ok); color: #fff; border-color: var(--ok); }
+    .sel-Maqan { background: var(--bad); color: #fff; border-color: var(--bad); }
+    .sel-Fasax { background: var(--warn); color: #fff; border-color: var(--warn); }
+    .p-bg { width: 100%; height: 13px; background: #dcebfa; border-radius: 999px; overflow: hidden; margin-top: 6px; }
+    .p-fill { height: 100%; background: linear-gradient(90deg, var(--b3), var(--tick)); transition: width 0.25s; }
     @media print {
-      header, .nav-tabs, .admin-bar, .no-print { display: none !important; }
-      body { background: #ffffff; padding-bottom: 0; }
-      .card { box-shadow: none; border: 1px solid #ccc; }
+      header, .tabs, .admin-box, .no-p { display: none !important; }
+      body { background: #fff; padding-bottom: 0; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-inner">
-      <div class="brand-row">
-        <div class="cty-badge">CTY</div>
-        <div class="brand">
-          <h1 id="hdrSchoolName">CTY SCHOOL <span class="blue-tick-check" title="Verified">✓</span></h1>
+    <div class="h-in">
+      <div class="h-left">
+        <div class="logo-box">CTY</div>
+        <div>
+          <h1 id="hdrTitle">CTY SCHOOL <span class="tick" title="Verified">✓</span></h1>
           <p id="hdrSub">Nidaamka Maamulka Xaadirinta Ardayda · Soomaaliya</p>
         </div>
       </div>
-      <div class="header-actions no-print">
-        <button type="button" class="btn btn-light btn-sm" onclick="installAppPrompt()">Soo Degso App-ka</button>
-        <button type="button" class="btn btn-light btn-sm" onclick="toggleLang()" id="langBtn">English</button>
-        <button type="button" class="btn btn-light btn-sm" onclick="exportBackup()">Kayd Celis (JSON)</button>
-        <button type="button" class="btn btn-red btn-sm hidden" id="logoutBtn" onclick="logoutAdmin()">Ka Bax</button>
+      <div class="h-btns no-p">
+        <button type="button" class="btn btn-w btn-sm" onclick="installAppPrompt()">Soo Degso App-ka</button>
+        <button type="button" class="btn btn-w btn-sm" onclick="toggleLang()" id="langBtn">English</button>
+        <button type="button" class="btn btn-w btn-sm" onclick="exportBackup()">Kayd Celis (JSON)</button>
+        <button type="button" class="btn btn-r btn-sm hidden" id="logoutBtn" onclick="logoutAdmin()">Ka Bax</button>
       </div>
     </div>
   </header>
 
-  <div class="container">
-    <section id="loginView" class="card login-box">
+  <div class="wrap">
+    <section id="loginView" class="card login-card">
       <h2>Gelitaanka Maamulaha (Admin)</h2>
-      <p style="font-size:0.84rem;color:var(--muted);margin-bottom:12px;">
+      <p style="font-size:0.84rem;color:var(--mut);margin-bottom:12px;">
         Gmail-ka rasmiga ah: <strong>wacanshaqo939@gmail.com</strong>. Marka aad gasho si toos ah ayuu kuu sii haynayaa.
       </p>
-      <form id="loginForm" onsubmit="handleLogin(event)">
+      <form onsubmit="handleLogin(event)">
         <div class="field">
-          <label for="loginEmail">Gmail</label>
+          <label>Gmail</label>
           <input type="email" id="loginEmail" value="wacanshaqo939@gmail.com" required />
         </div>
         <div class="field">
-          <label for="loginPass">Password</label>
+          <label>Password</label>
           <input type="password" id="loginPass" placeholder="Geli password-kaaga (4+ xaraf)" required />
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;">Gal Nidaamka (Login)</button>
+        <button type="submit" class="btn btn-b" style="width:100%;">Gal Nidaamka (Login)</button>
         <div id="loginMsg" class="msg"></div>
       </form>
     </section>
 
     <section id="appView" class="hidden">
-      <div class="admin-bar no-print">
-        <div class="admin-identity">
-          <div class="admin-avatar-wrap">
-            <img id="adminTopAvatarImg" class="admin-avatar-img hidden" alt="Profile Macallinka" />
-            <div id="adminTopAvatarFallback" class="admin-avatar-fallback">M</div>
-            <span class="avatar-tick-corner" title="Verified Admin">✓</span>
+      <div class="admin-box no-p">
+        <div class="adm-left">
+          <div class="av-wrap">
+            <img id="topAvImg" class="av-img hidden" alt="Profile" />
+            <div id="topAvFb" class="av-fb">M</div>
+            <span class="av-dot">✓</span>
           </div>
           <div>
             <div>
-              <strong id="activeTeacherLabel">Macalin aqiyaar</strong>
-              <span style="color:var(--muted);font-size:0.82rem;">(<span id="activeRoleText">Macallin / Maamulaha</span>)</span>
-              <span class="blue-tick-check" title="Verified">✓</span>
+              <strong id="topName">Macalin aqiyaar</strong>
+              <span style="color:var(--mut);font-size:0.82rem;">(Macallin / Maamulaha)</span>
+              <span class="tick" title="Verified">✓</span>
             </div>
-            <div style="font-size:0.8rem;color:var(--blue-main);font-weight:700;" id="activeAdminEmail">wacanshaqo939@gmail.com</div>
+            <div style="font-size:0.8rem;color:var(--b2);font-weight:700;" id="topEmail">wacanshaqo939@gmail.com</div>
           </div>
         </div>
-        <span class="persist-tag">Gelitaan Toos Ah · Kaydcelis: JSON</span>
+        <span class="tag-ok">Gelitaan Toos Ah · Kaydcelis: JSON</span>
       </div>
 
-      <nav class="nav-tabs no-print">
-        <button type="button" class="tab-btn active" data-tab="dash" onclick="switchTab('dash')">Bogga Hore</button>
-        <button type="button" class="tab-btn" data-tab="att" onclick="switchTab('att')">Xaadirinta Maanta</button>
-        <button type="button" class="tab-btn" data-tab="students" onclick="switchTab('students')">Ardayda</button>
-        <button type="button" class="tab-btn" data-tab="classes" onclick="switchTab('classes')">Fasallada &amp; Qaybaha</button>
-        <button type="button" class="tab-btn" data-tab="reports" onclick="switchTab('reports')">Warbixinno</button>
-        <button type="button" class="tab-btn" data-tab="settings" onclick="switchTab('settings')">Dejinta</button>
+      <nav class="tabs no-p">
+        <button type="button" class="tab active" data-t="dash" onclick="goTab('dash')">Bogga Hore</button>
+        <button type="button" class="tab" data-t="att" onclick="goTab('att')">Xaadirinta Maanta</button>
+        <button type="button" class="tab" data-t="students" onclick="goTab('students')">Ardayda</button>
+        <button type="button" class="tab" data-t="classes" onclick="goTab('classes')">Fasallada &amp; Qaybaha</button>
+        <button type="button" class="tab" data-t="reports" onclick="goTab('reports')">Warbixinno</button>
+        <button type="button" class="tab" data-t="settings" onclick="goTab('settings')">Dejinta</button>
       </nav>
 
-      <div id="pane-dash" class="tab-pane">
+      <div id="p-dash" class="pane">
         <div class="card">
           <h2>Dashboard — 2026/2027</h2>
-          <div class="grid-4">
-            <div class="stat stat-blue">
-              <div class="num" id="stTotal">0</div>
-              <div class="lbl">Tirada Guud ee Ardayda</div>
-            </div>
-            <div class="stat stat-green">
-              <div class="num" id="stPresent">0</div>
-              <div class="lbl">Ardayda Maanta Joogta</div>
-            </div>
-            <div class="stat stat-red">
-              <div class="num" id="stAbsent">0</div>
-              <div class="lbl">Ardayda Maanta Maqan</div>
-            </div>
-            <div class="stat stat-amber">
-              <div class="num" id="stExcused">0</div>
-              <div class="lbl">Ardayda Fasaxa Ah</div>
-            </div>
+          <div class="g4">
+            <div class="st st-b"><div class="n" id="sTot">0</div><div class="l">Tirada Guud ee Ardayda</div></div>
+            <div class="st st-g"><div class="n" id="sPre">0</div><div class="l">Ardayda Maanta Joogta</div></div>
+            <div class="st st-r"><div class="n" id="sAbs">0</div><div class="l">Ardayda Maanta Maqan</div></div>
+            <div class="st st-a"><div class="n" id="sExc">0</div><div class="l">Ardayda Fasaxa Ah</div></div>
           </div>
-          <div class="grid-2" style="margin-top:10px;">
-            <div class="stat">
-              <div class="num" id="stRate">0%</div>
-              <div class="lbl">Boqolleyda Xaadirinta Maanta</div>
-            </div>
-            <div class="stat">
-              <div class="num">20</div>
-              <div class="lbl">Fasallada &amp; Qaybaha (5 × 4)</div>
-            </div>
+          <div class="g2" style="margin-top:10px;">
+            <div class="st"><div class="n" id="sRate">0%</div><div class="l">Boqolleyda Xaadirinta Maanta</div></div>
+            <div class="st"><div class="n">20</div><div class="l">Fasallada &amp; Qaybaha (5 × 4)</div></div>
           </div>
           <div style="margin-top:12px;">
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--muted);">
-              <span>Xaadirintii Ugu Dambeysay: <strong id="stLastDate">-</strong></span>
+            <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--mut);">
+              <span>Xaadirintii Ugu Dambeysay: <strong id="sLast">-</strong></span>
               <span>Heerka Xaadirinta Maanta</span>
             </div>
-            <div class="bar-bg"><div class="bar-fill" id="stRateBar" style="width:0%;"></div></div>
+            <div class="p-bg"><div class="p-fill" id="sBar" style="width:0%;"></div></div>
           </div>
         </div>
 
         <div class="card">
           <h2>Ogeysiisyada Waalidka (Maqan / Fasax Maanta)</h2>
-          <div class="table-wrap">
+          <div class="t-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th>Ardayga</th>
-                  <th>Fasal / Qayb</th>
-                  <th>Xaaladda</th>
-                  <th>Waalidka &amp; WhatsApp</th>
-                  <th>Farriinta</th>
-                </tr>
-              </thead>
-              <tbody id="parentAlertsBody"></tbody>
+              <thead><tr><th>Ardayga</th><th>Fasal / Qayb</th><th>Xaaladda</th><th>Waalidka &amp; WhatsApp</th><th>Farriinta</th></tr></thead>
+              <tbody id="alertsBody"></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <div id="pane-att" class="tab-pane hidden">
+      <div id="p-att" class="pane hidden">
         <div class="card">
           <h2>Xaadirinta Maalinlaha Ah</h2>
-          <div class="grid-3" style="margin-bottom:12px;">
-            <div class="field">
-              <label>Taariikhda</label>
-              <input type="date" id="attDate" onchange="renderAttendanceSheet()" />
-            </div>
-            <div class="field">
-              <label>Fasalka</label>
-              <select id="attClass" onchange="renderAttendanceSheet()">
-                <option value="Fasalka 8aad">Fasalka 8aad</option>
-                <option value="F1">F1</option>
-                <option value="F2">F2</option>
-                <option value="F3">F3</option>
-                <option value="F4">F4</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Qaybta</label>
-              <select id="attSection" onchange="renderAttendanceSheet()">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-              </select>
-            </div>
+          <div class="g3" style="margin-bottom:10px;">
+            <div class="field"><label>Taariikhda</label><input type="date" id="attDate" onchange="drawAtt()" /></div>
+            <div class="field"><label>Fasalka</label><select id="attCls" onchange="drawAtt()"><option>Fasalka 8aad</option><option>F1</option><option>F2</option><option>F3</option><option>F4</option></select></div>
+            <div class="field"><label>Qaybta</label><select id="attSec" onchange="drawAtt()"><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
           </div>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
-            <button type="button" class="btn btn-light btn-sm" onclick="markAll('Jooga')">Dhammaan Jooga</button>
-            <button type="button" class="btn btn-green" onclick="saveAttendance()">Kaydi Xaadirinta</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+            <button type="button" class="btn btn-w btn-sm" onclick="allJooga()">Dhammaan Jooga</button>
+            <button type="button" class="btn btn-g" onclick="saveAtt()">Kaydi Xaadirinta</button>
           </div>
-          <div id="attSaveMsg" class="msg"></div>
-          <div class="table-wrap">
+          <div id="attMsg" class="msg"></div>
+          <div class="t-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th>Lambarka</th>
-                  <th>Magaca Buuxa</th>
-                  <th>Xaadirinta</th>
-                  <th>WhatsApp Waalidka</th>
-                </tr>
-              </thead>
-              <tbody id="attSheetBody"></tbody>
+              <thead><tr><th>Lambarka</th><th>Magaca Buuxa</th><th>Xaadirinta</th><th>WhatsApp Waalidka</th></tr></thead>
+              <tbody id="attBody"></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <div id="pane-students" class="tab-pane hidden">
+      <div id="p-students" class="pane hidden">
         <div class="card">
-          <h2 id="stuFormTitle">Diiwaangelinta Arday Cusub</h2>
-          <form id="studentForm" onsubmit="saveStudent(event)">
-            <input type="hidden" id="stuEditId" />
-            <div class="grid-3">
-              <div class="field">
-                <label>Magaca oo Buuxa *</label>
-                <input type="text" id="stuName" required placeholder="Tusaale: Ayaan Maxamed Cali" />
-              </div>
-              <div class="field">
-                <label>Lambarka Ardayga *</label>
-                <input type="text" id="stuRoll" required placeholder="Tusaale: CTY-2026-001" />
-              </div>
-              <div class="field">
-                <label>Fasalka *</label>
-                <select id="stuClass" required>
-                  <option value="Fasalka 8aad">Fasalka 8aad</option>
-                  <option value="F1">F1</option>
-                  <option value="F2">F2</option>
-                  <option value="F3">F3</option>
-                  <option value="F4">F4</option>
-                </select>
-              </div>
-              <div class="field">
-                <label>Qaybta *</label>
-                <select id="stuSection" required>
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
-                  <option value="D">D</option>
-                </select>
-              </div>
-              <div class="field">
-                <label>Magaca Waalidka / Masuulka *</label>
-                <input type="text" id="stuParent" required placeholder="Tusaale: Maxamed Cali" />
-              </div>
-              <div class="field">
-                <label>Lambarka WhatsApp-ka Waalidka *</label>
-                <input type="tel" id="stuPhone" required placeholder="Tusaale: 252615000000" />
-              </div>
+          <h2 id="stuTitle">Diiwaangelinta Arday Cusub</h2>
+          <form onsubmit="saveStu(event)" id="stuForm">
+            <input type="hidden" id="stuId" />
+            <div class="g3">
+              <div class="field"><label>Magaca oo Buuxa *</label><input type="text" id="stuName" required placeholder="Tusaale: Ayaan Maxamed Cali" /></div>
+              <div class="field"><label>Lambarka Ardayga *</label><input type="text" id="stuRoll" required placeholder="Tusaale: CTY-2026-001" /></div>
+              <div class="field"><label>Fasalka *</label><select id="stuCls" required><option>Fasalka 8aad</option><option>F1</option><option>F2</option><option>F3</option><option>F4</option></select></div>
+              <div class="field"><label>Qaybta *</label><select id="stuSec" required><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
+              <div class="field"><label>Magaca Waalidka / Masuulka *</label><input type="text" id="stuPar" required placeholder="Tusaale: Maxamed Cali" /></div>
+              <div class="field"><label>Lambarka WhatsApp-ka Waalidka *</label><input type="tel" id="stuPho" required placeholder="Tusaale: 252615000000" /></div>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <button type="submit" class="btn btn-primary">Kaydi Ardayga</button>
-              <button type="button" class="btn btn-light" onclick="resetStudentForm()">Nadiifi Foomka</button>
+              <button type="submit" class="btn btn-b">Kaydi Ardayga</button>
+              <button type="button" class="btn btn-w" onclick="resetStu()">Nadiifi Foomka</button>
             </div>
             <div id="stuMsg" class="msg"></div>
           </form>
@@ -534,172 +297,85 @@
 
         <div class="card">
           <h2>Liiska Ardayda &amp; Raadinta</h2>
-          <div class="grid-3" style="margin-bottom:12px;">
-            <div class="field">
-              <label>Raadi Magac ama Lambar</label>
-              <input type="text" id="searchStu" oninput="renderStudents()" placeholder="Geli magac ama lambar..." />
-            </div>
-            <div class="field">
-              <label>Shaandhee Fasalka</label>
-              <select id="filterClass" onchange="renderStudents()">
-                <option value="">Dhammaan Fasallada</option>
-                <option value="Fasalka 8aad">Fasalka 8aad</option>
-                <option value="F1">F1</option>
-                <option value="F2">F2</option>
-                <option value="F3">F3</option>
-                <option value="F4">F4</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Shaandhee Qaybta</label>
-              <select id="filterSection" onchange="renderStudents()">
-                <option value="">Dhammaan Qaybaha</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-              </select>
-            </div>
+          <div class="g3" style="margin-bottom:10px;">
+            <div class="field"><label>Raadi Magac ama Lambar</label><input type="text" id="qStu" oninput="drawStu()" placeholder="Geli magac ama lambar..." /></div>
+            <div class="field"><label>Shaandhee Fasalka</label><select id="fCls" onchange="drawStu()"><option value="">Dhammaan Fasallada</option><option>Fasalka 8aad</option><option>F1</option><option>F2</option><option>F3</option><option>F4</option></select></div>
+            <div class="field"><label>Shaandhee Qaybta</label><select id="fSec" onchange="drawStu()"><option value="">Dhammaan Qaybaha</option><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
           </div>
-          <div class="table-wrap">
+          <div class="t-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th>Lambar</th>
-                  <th>Magaca Buuxa</th>
-                  <th>Fasal</th>
-                  <th>Qayb</th>
-                  <th>Waalidka</th>
-                  <th>WhatsApp</th>
-                  <th>Ficillo</th>
-                </tr>
-              </thead>
-              <tbody id="studentsBody"></tbody>
+              <thead><tr><th>Lambar</th><th>Magaca Buuxa</th><th>Fasal</th><th>Qayb</th><th>Waalidka</th><th>WhatsApp</th><th>Ficillo</th></tr></thead>
+              <tbody id="stuBody"></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <div id="pane-classes" class="tab-pane hidden">
+      <div id="p-classes" class="pane hidden">
         <div class="card">
           <h2>Fasallada &amp; Qaybaha (5 Fasal × 4 Qaybood = 20)</h2>
-          <div class="table-wrap">
+          <div class="t-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th>Fasalka</th>
-                  <th>Qaybta</th>
-                  <th>Tirada Ardayda</th>
-                  <th>Fur Xaadirinta</th>
-                </tr>
-              </thead>
-              <tbody id="classesBody"></tbody>
+              <thead><tr><th>Fasalka</th><th>Qaybta</th><th>Tirada Ardayda</th><th>Fur Xaadirinta</th></tr></thead>
+              <tbody id="clsBody"></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <div id="pane-reports" class="tab-pane hidden">
+      <div id="p-reports" class="pane hidden">
         <div class="card">
           <h2>Warbixinnada Xaadirinta</h2>
-          <div class="grid-3" style="margin-bottom:12px;">
-            <div class="field">
-              <label>Nooca Warbixinta</label>
-              <select id="repPeriod" onchange="renderReports()">
-                <option value="daily">Maalinle (1 Maalin)</option>
-                <option value="weekly">Toddobaadle (7 Maalmood)</option>
-                <option value="monthly">Bille (30 Maalmood)</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Taariikhda</label>
-              <input type="date" id="repDate" onchange="renderReports()" />
-            </div>
-            <div class="field">
-              <label>Fasalka</label>
-              <select id="repClass" onchange="renderReports()">
-                <option value="">Dhammaan Fasallada</option>
-                <option value="Fasalka 8aad">Fasalka 8aad</option>
-                <option value="F1">F1</option>
-                <option value="F2">F2</option>
-                <option value="F3">F3</option>
-                <option value="F4">F4</option>
-              </select>
-            </div>
+          <div class="g3" style="margin-bottom:10px;">
+            <div class="field"><label>Nooca Warbixinta</label><select id="rPer" onchange="drawRep()"><option value="daily">Maalinle (1 Maalin)</option><option value="weekly">Toddobaadle (7 Maalmood)</option><option value="monthly">Bille (30 Maalmood)</option></select></div>
+            <div class="field"><label>Taariikhda</label><input type="date" id="rDate" onchange="drawRep()" /></div>
+            <div class="field"><label>Fasalka</label><select id="rCls" onchange="drawRep()"><option value="">Dhammaan Fasallada</option><option>Fasalka 8aad</option><option>F1</option><option>F2</option><option>F3</option><option>F4</option></select></div>
           </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;" class="no-print">
-            <button type="button" class="btn btn-green" onclick="exportCSV()">Soo Dejiso Excel / CSV</button>
-            <button type="button" class="btn btn-primary" onclick="window.print()">Daabac / Kaydi PDF</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;" class="no-p">
+            <button type="button" class="btn btn-g" onclick="exportCSV()">Soo Dejiso Excel / CSV</button>
+            <button type="button" class="btn btn-b" onclick="window.print()">Daabac / Kaydi PDF</button>
           </div>
-          <div class="table-wrap">
+          <div class="t-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th>Taariikhda</th>
-                  <th>Lambar</th>
-                  <th>Magaca Ardayga</th>
-                  <th>Fasal / Qayb</th>
-                  <th>Xaaladda</th>
-                </tr>
-              </thead>
-              <tbody id="reportsBody"></tbody>
+              <thead><tr><th>Taariikhda</th><th>Lambar</th><th>Magaca Ardayga</th><th>Fasal / Qayb</th><th>Xaaladda</th></tr></thead>
+              <tbody id="repBody"></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <div id="pane-settings" class="tab-pane hidden">
+      <div id="p-settings" class="pane hidden">
         <div class="card">
           <h2>Dejinta Dugsiga &amp; Profile-ka Macallinka</h2>
-
-          <div class="profile-preview-box">
-            <div class="admin-avatar-wrap" style="width:60px;height:60px;">
-              <img id="setProfilePreview" class="admin-avatar-img hidden" style="width:60px;height:60px;" alt="Sawirka Macallinka" />
-              <div id="setProfileFallback" class="admin-avatar-fallback" style="width:60px;height:60px;font-size:1.2rem;">M</div>
-              <span class="avatar-tick-corner" title="Verified Admin">✓</span>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:#f0f7ff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:12px;">
+            <div class="av-wrap" style="width:58px;height:58px;">
+              <img id="setAvImg" class="av-img hidden" style="width:58px;height:58px;" alt="Profile" />
+              <div id="setAvFb" class="av-fb" style="width:58px;height:58px;font-size:1.15rem;">M</div>
+              <span class="av-dot">✓</span>
             </div>
-            <div style="flex:1;min-width:200px;">
-              <div style="font-weight:800;">
-                <span id="setTeacherPreviewName">Macalin aqiyaar</span>
-                <span class="blue-tick-check" title="Verified">✓</span>
-              </div>
-              <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px;">
-                <input type="file" id="setPhotoInput" accept="image/*" onchange="handlePhotoUpload(event)" style="max-width:240px;" />
-                <button type="button" class="btn btn-light btn-sm" onclick="removeTeacherPhoto()">Ka Saar Sawirka</button>
+            <div>
+              <div style="font-weight:800;"><span id="setTNameLbl">Macalin aqiyaar</span> <span class="tick">✓</span></div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+                <input type="file" id="photoInp" accept="image/*" onchange="upPhoto(event)" style="max-width:220px;" />
+                <button type="button" class="btn btn-w btn-sm" onclick="delPhoto()">Ka Saar Sawirka</button>
               </div>
             </div>
           </div>
-
-          <form onsubmit="saveSettings(event)">
-            <div class="grid-2">
-              <div class="field">
-                <label>Magaca Dugsiga</label>
-                <input type="text" id="setSchool" required />
-              </div>
-              <div class="field">
-                <label>Magaca Macallinka Maamulaha</label>
-                <input type="text" id="setTeacherName" />
-              </div>
-              <div class="field">
-                <label>Gmail-ka Maamulaha (Mulkiilaha)</label>
-                <input type="email" id="setEmail" required />
-              </div>
-              <div class="field">
-                <label>Password Cusub (ka tag bannaan haddii aadan beddelanayn)</label>
-                <input type="password" id="setNewPass" placeholder="Ugu yaraan 4 xaraf" />
-              </div>
-              <div class="field">
-                <label>Cloud Sync Webhook URL (ikhtiyaari)</label>
-                <input type="url" id="setWebhook" placeholder="https://hook.eu2.make.com/..." />
-              </div>
+          <form onsubmit="saveSet(event)">
+            <div class="g2">
+              <div class="field"><label>Magaca Dugsiga</label><input type="text" id="setSch" required /></div>
+              <div class="field"><label>Magaca Macallinka</label><input type="text" id="setTName" /></div>
+              <div class="field"><label>Gmail-ka Maamulaha</label><input type="email" id="setEm" required /></div>
+              <div class="field"><label>Password Cusub (ikhtiyaari)</label><input type="password" id="setPw" placeholder="4+ xaraf" /></div>
+              <div class="field"><label>Webhook URL (ikhtiyaari)</label><input type="url" id="setWh" /></div>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <button type="submit" class="btn btn-primary">Kaydi Dejimaha</button>
-              <button type="button" class="btn btn-light" onclick="exportBackup()">Soo Deji Backup (JSON)</button>
-              <input type="file" id="restoreFile" accept=".json,application/json" onchange="importBackup(event)" style="max-width:220px;" />
+              <button type="submit" class="btn btn-b">Kaydi Dejimaha</button>
+              <button type="button" class="btn btn-w" onclick="exportBackup()">Soo Deji Backup (JSON)</button>
+              <input type="file" id="resFile" accept=".json,application/json" onchange="impBackup(event)" style="max-width:210px;" />
             </div>
             <div id="setMsg" class="msg"></div>
-            <div id="backupMsg" class="msg"></div>
+            <div id="bakMsg" class="msg"></div>
           </form>
         </div>
       </div>
@@ -707,614 +383,264 @@
   </div>
 
   <script>
-    const CLASSES = ['Fasalka 8aad', 'F1', 'F2', 'F3', 'F4'];
-    const SECTIONS = ['A', 'B', 'C', 'D'];
-    const STORAGE_KEY = 'cty_school_db_v1';
-    const PERSIST_LOGIN_KEY = 'cty_school_logged_in_v1';
+    const CLS = ['Fasalka 8aad', 'F1', 'F2', 'F3', 'F4'];
+    const SEC = ['A', 'B', 'C', 'D'];
+    const DB_K = 'cty_school_db_v1';
+    const LG_K = 'cty_school_logged_in_v1';
+    const tod = () => new Date().toISOString().slice(0, 10);
+    const defDB = () => ({ schoolName: 'CTY SCHOOL', teacherName: 'Macalin aqiyaar', teacherPhoto: '', adminEmail: 'wacanshaqo939@gmail.com', adminPassHash: '', webhookUrl: '', lang: 'so', students: [], attendance: {} });
+    const hsh = s => { let h = 0; for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0; return String(h); };
+    let db = (() => { try { return { ...defDB(), ...JSON.parse(localStorage.getItem(DB_K) || '{}') }; } catch { return defDB(); } })();
 
     let deferredPrompt = null;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-    });
-
+    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; });
     function installAppPrompt() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt = null;
-      } else {
-        alert('Si aad app-ka u soo degsato: Chrome/Browser-ka ka fur Menu (⋮) → "Add to Home screen" ama "Install app".');
-      }
+      if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt = null; }
+      else alert('Si aad app-ka u soo degsato: Browser-ka ka fur Menu (⋮) → "Install and create shortcut" ama "Add to Home screen".');
     }
 
-    function todayISO() {
-      return new Date().toISOString().slice(0, 10);
+    if ('serviceWorker' in navigator && window.isSecureContext) {
+      const swCode = `
+        self.addEventListener('install', e => self.skipWaiting());
+        self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
+        self.addEventListener('fetch', e => {
+          if (e.request.method !== 'GET') return;
+          e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+        });
+      `;
+      const swUrl = URL.createObjectURL(new Blob([swCode], { type: 'text/javascript' }));
+      navigator.serviceWorker.register(swUrl).catch(() => {});
     }
-
-    function defaultDB() {
-      return {
-        schoolName: 'CTY SCHOOL',
-        teacherName: 'Macalin aqiyaar',
-        teacherPhoto: '',
-        adminEmail: 'wacanshaqo939@gmail.com',
-        adminPassHash: '',
-        webhookUrl: '',
-        lang: 'so',
-        students: [],
-        attendance: {}
-      };
-    }
-
-    function simpleHash(str) {
-      let h = 0;
-      for (let i = 0; i < str.length; i++) {
-        h = ((h << 5) - h + str.charCodeAt(i)) | 0;
-      }
-      return String(h);
-    }
-
-    function loadDB() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return defaultDB();
-        return { ...defaultDB(), ...JSON.parse(raw) };
-      } catch {
-        return defaultDB();
-      }
-    }
-
-    let db = loadDB();
 
     function saveDB() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
-      if (db.webhookUrl) {
-        fetch(db.webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ event: 'cty_school_sync', updatedAt: new Date().toISOString(), db })
-        }).catch(() => {});
-      }
+      localStorage.setItem(DB_K, JSON.stringify(db));
+      if (db.webhookUrl) fetch(db.webhookUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event: 'cty_school_sync', db }) }).catch(() => {});
     }
 
-    function renderTeacherIdentity() {
-      const tName = (db.teacherName || 'Macalin aqiyaar').trim();
-      const email = db.adminEmail || 'wacanshaqo939@gmail.com';
-      const initial = (tName[0] || email[0] || 'M').toUpperCase();
+    function esc(v) { return String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
-      document.getElementById('activeTeacherLabel').textContent = tName;
-      document.getElementById('activeAdminEmail').textContent = email;
-      document.getElementById('setTeacherPreviewName').textContent = tName;
-
-      const topImg = document.getElementById('adminTopAvatarImg');
-      const topFb = document.getElementById('adminTopAvatarFallback');
-      const setImg = document.getElementById('setProfilePreview');
-      const setFb = document.getElementById('setProfileFallback');
-
-      topFb.textContent = initial;
-      setFb.textContent = initial;
-
-      if (db.teacherPhoto) {
-        topImg.src = db.teacherPhoto;
-        topImg.classList.remove('hidden');
-        topFb.classList.add('hidden');
-        setImg.src = db.teacherPhoto;
-        setImg.classList.remove('hidden');
-        setFb.classList.add('hidden');
-      } else {
-        topImg.classList.add('hidden');
-        topFb.classList.remove('hidden');
-        setImg.classList.add('hidden');
-        setFb.classList.remove('hidden');
-      }
+    function drawAv() {
+      const n = (db.teacherName || 'Macalin aqiyaar').trim();
+      const ini = (n[0] || 'M').toUpperCase();
+      document.getElementById('topName').textContent = n;
+      document.getElementById('topEmail').textContent = db.adminEmail || 'wacanshaqo939@gmail.com';
+      document.getElementById('setTNameLbl').textContent = n;
+      ['topAvFb', 'setAvFb'].forEach(id => document.getElementById(id).textContent = ini);
+      ['topAvImg', 'setAvImg'].forEach(id => {
+        const el = document.getElementById(id);
+        const fb = document.getElementById(id.replace('Img', 'Fb'));
+        if (db.teacherPhoto) { el.src = db.teacherPhoto; el.classList.remove('hidden'); fb.classList.add('hidden'); }
+        else { el.classList.add('hidden'); fb.classList.remove('hidden'); }
+      });
     }
 
-    function handlePhotoUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        db.teacherPhoto = reader.result;
-        saveDB();
-        renderTeacherIdentity();
-        const el = document.getElementById('setMsg');
-        el.className = 'msg ok';
-        el.textContent = 'Sawirka profile-ka macallinka waa la kaydiyay.';
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function removeTeacherPhoto() {
-      db.teacherPhoto = '';
-      const inp = document.getElementById('setPhotoInput');
-      if (inp) inp.value = '';
-      saveDB();
-      renderTeacherIdentity();
-      const el = document.getElementById('setMsg');
-      el.className = 'msg ok';
-      el.textContent = 'Sawirka profile-ka waa laga saaray.';
-    }
+    function upPhoto(e) { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { db.teacherPhoto = r.result; saveDB(); drawAv(); }; r.readAsDataURL(f); }
+    function delPhoto() { db.teacherPhoto = ''; if (document.getElementById('photoInp')) document.getElementById('photoInp').value = ''; saveDB(); drawAv(); }
 
     function applyLang() {
-      const isEn = db.lang === 'en';
+      const en = db.lang === 'en';
       const sName = db.schoolName || 'CTY SCHOOL';
-      document.getElementById('hdrSchoolName').innerHTML = `${esc(sName)} <span class="blue-tick-check" title="Verified">✓</span>`;
-      document.getElementById('hdrSub').textContent = isEn
-        ? 'Student Attendance Management System · Somalia'
-        : 'Nidaamka Maamulka Xaadirinta Ardayda · Soomaaliya';
-      document.getElementById('langBtn').textContent = isEn ? 'Soomaali' : 'English';
-      renderTeacherIdentity();
+      document.getElementById('hdrTitle').innerHTML = `${esc(sName)} <span class="tick" title="Verified">✓</span>`;
+      document.getElementById('hdrSub').textContent = en ? 'Student Attendance Management System · Somalia' : 'Nidaamka Maamulka Xaadirinta Ardayda · Soomaaliya';
+      document.getElementById('langBtn').textContent = en ? 'Soomaali' : 'English';
+      drawAv();
     }
 
-    function toggleLang() {
-      db.lang = db.lang === 'so' ? 'en' : 'so';
-      saveDB();
-      applyLang();
-    }
+    function toggleLang() { db.lang = db.lang === 'so' ? 'en' : 'so'; saveDB(); applyLang(); }
 
     function handleLogin(e) {
       e.preventDefault();
-      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-      const pass = document.getElementById('loginPass').value;
-      const msg = document.getElementById('loginMsg');
-      const ownerEmail = (db.adminEmail || 'wacanshaqo939@gmail.com').toLowerCase();
-
-      if (email !== ownerEmail) {
-        msg.className = 'msg err';
-        msg.textContent = 'Kaliya Gmail-ka rasmiga ah ee maamulaha ayaa geli kara.';
-        return;
-      }
-      if (pass.length < 4) {
-        msg.className = 'msg err';
-        msg.textContent = 'Password-ku waa inuu ka koobnaadaa ugu yaraan 4 xaraf.';
-        return;
-      }
-
-      const hash = simpleHash(pass);
-      if (!db.adminPassHash) {
-        db.adminPassHash = hash;
-        saveDB();
-      } else if (db.adminPassHash !== hash) {
-        msg.className = 'msg err';
-        msg.textContent = 'Password-ku waa khalad.';
-        return;
-      }
-
-      localStorage.setItem(PERSIST_LOGIN_KEY, '1');
-      msg.textContent = '';
-      enterApp();
+      const em = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const pw = document.getElementById('loginPass').value;
+      const m = document.getElementById('loginMsg');
+      if (em !== (db.adminEmail || 'wacanshaqo939@gmail.com').toLowerCase()) { m.className = 'msg err'; m.textContent = 'Gmail-ka maamulaha kaliya ayaa geli kara.'; return; }
+      if (pw.length < 4) { m.className = 'msg err'; m.textContent = 'Password-ku ugu yaraan 4 xaraf ha ahaado.'; return; }
+      const h = hsh(pw);
+      if (!db.adminPassHash) { db.adminPassHash = h; saveDB(); }
+      else if (db.adminPassHash !== h) { m.className = 'msg err'; m.textContent = 'Password-ku waa khalad.'; return; }
+      localStorage.setItem(LG_K, '1'); m.textContent = ''; enterApp();
     }
 
-    function logoutAdmin() {
-      localStorage.removeItem(PERSIST_LOGIN_KEY);
-      document.getElementById('appView').classList.add('hidden');
-      document.getElementById('logoutBtn').classList.add('hidden');
-      document.getElementById('loginView').classList.remove('hidden');
-      document.getElementById('loginPass').value = '';
-    }
+    function logoutAdmin() { localStorage.removeItem(LG_K); document.getElementById('appView').classList.add('hidden'); document.getElementById('logoutBtn').classList.add('hidden'); document.getElementById('loginView').classList.remove('hidden'); }
 
     function enterApp() {
       document.getElementById('loginView').classList.add('hidden');
       document.getElementById('appView').classList.remove('hidden');
       document.getElementById('logoutBtn').classList.remove('hidden');
-
-      const today = todayISO();
-      if (!document.getElementById('attDate').value) document.getElementById('attDate').value = today;
-      if (!document.getElementById('repDate').value) document.getElementById('repDate').value = today;
-
-      loadSettingsForm();
-      applyLang();
-      renderAll();
+      if (!document.getElementById('attDate').value) document.getElementById('attDate').value = tod();
+      if (!document.getElementById('rDate').value) document.getElementById('rDate').value = tod();
+      document.getElementById('setSch').value = db.schoolName || 'CTY SCHOOL';
+      document.getElementById('setTName').value = db.teacherName || 'Macalin aqiyaar';
+      document.getElementById('setEm').value = db.adminEmail || 'wacanshaqo939@gmail.com';
+      document.getElementById('setWh').value = db.webhookUrl || '';
+      applyLang(); drawAll();
     }
 
-    function switchTab(tab) {
-      document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('hidden', p.id !== 'pane-' + tab));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-      renderAll();
+    function goTab(t) {
+      document.querySelectorAll('.pane').forEach(p => p.classList.toggle('hidden', p.id !== 'p-' + t));
+      document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.t === t));
+      drawAll();
     }
 
-    function renderAll() {
-      renderDashboard();
-      renderAttendanceSheet();
-      renderStudents();
-      renderClasses();
-      renderReports();
+    function drawAll() { drawDash(); drawAtt(); drawStu(); drawCls(); drawRep(); }
+
+    function drawDash() {
+      const ds = Object.keys(db.attendance).sort();
+      const ld = ds.length ? ds[ds.length - 1] : tod();
+      const rec = db.attendance[ld] || {};
+      let pre = 0, abs = 0, exc = 0;
+      db.students.forEach(s => { if (rec[s.id] === 'Jooga') pre++; else if (rec[s.id] === 'Maqan') abs++; else if (rec[s.id] === 'Fasax') exc++; });
+      const mk = pre + abs + exc;
+      const rt = mk ? Math.round((pre / mk) * 100) : 0;
+      document.getElementById('sTot').textContent = db.students.length;
+      document.getElementById('sPre').textContent = pre;
+      document.getElementById('sAbs').textContent = abs;
+      document.getElementById('sExc').textContent = exc;
+      document.getElementById('sRate').textContent = rt + '%';
+      document.getElementById('sBar').style.width = rt + '%';
+      document.getElementById('sLast').textContent = ds.length ? ld : '-';
+
+      const al = db.students.filter(s => rec[s.id] === 'Maqan' || rec[s.id] === 'Fasax');
+      document.getElementById('alertsBody').innerHTML = al.length ? al.map(s => {
+        const st = rec[s.id];
+        const txt = `Asc ${s.parent}. Ardaygaaga ${s.name} (${s.cls}-${s.section}) wuxuu ${ld} ahaa ${st}.`;
+        return `<tr><td><strong>${esc(s.name)}</strong><br><small>${esc(s.roll)}</small></td><td>${esc(s.cls)} (${esc(s.section)})</td><td><span class="bdg b-${st.toLowerCase()}">${st}</span></td><td>${esc(s.parent)}<br><small>${esc(s.phone)}</small></td><td><a class="btn btn-g btn-sm" target="_blank" rel="noopener" href="https://wa.me/${s.phone.replace(/\D/g,'')}?text=${encodeURIComponent(txt)}">Dir WhatsApp</a></td></tr>`;
+      }).join('') : '<tr><td colspan="5">Ma jiraan arday maqan ama fasax ah xogta hadda kaydsan.</td></tr>';
     }
 
-    function renderDashboard() {
-      const dates = Object.keys(db.attendance).sort();
-      const latestDate = dates.length ? dates[dates.length - 1] : todayISO();
-      const dayRec = db.attendance[latestDate] || {};
+    function drawAtt() {
+      const d = document.getElementById('attDate').value || tod();
+      const c = document.getElementById('attCls').value;
+      const sc = document.getElementById('attSec').value;
+      const list = db.students.filter(s => s.cls === c && s.section === sc);
+      const rec = db.attendance[d] || {};
+      document.getElementById('attBody').innerHTML = list.length ? list.map(s => {
+        const cur = rec[s.id] || 'Jooga';
+        return `<tr data-id="${s.id}"><td>${esc(s.roll)}</td><td>${esc(s.name)}</td><td><div class="att-g">${['Jooga','Maqan','Fasax'].map(x => `<button type="button" class="att-b ${cur===x?'sel-'+x:''}" onclick="pickSt(this,'${x}')">${x}</button>`).join('')}</div></td><td>${esc(s.phone)}</td></tr>`;
+      }).join('') : '<tr><td colspan="4">Arday kuma qorna fasalka iyo qaybta aad dooratay.</td></tr>';
+    }
 
-      let present = 0, absent = 0, excused = 0;
-      db.students.forEach(s => {
-        const st = dayRec[s.id];
-        if (st === 'Jooga') present++;
-        else if (st === 'Maqan') absent++;
-        else if (st === 'Fasax') excused++;
+    function pickSt(b, st) { b.closest('tr').querySelectorAll('.att-b').forEach(x => { x.className = 'att-b'; if (x.textContent === st) x.classList.add('sel-' + st); }); }
+    function allJooga() { document.querySelectorAll('#attBody tr[data-id]').forEach(r => r.querySelectorAll('.att-b').forEach(x => { x.className = 'att-b'; if (x.textContent === 'Jooga') x.classList.add('sel-Jooga'); })); }
+
+    function saveAtt() {
+      const d = document.getElementById('attDate').value || tod();
+      if (!db.attendance[d]) db.attendance[d] = {};
+      document.querySelectorAll('#attBody tr[data-id]').forEach(r => {
+        const act = r.querySelector('.sel-Jooga,.sel-Maqan,.sel-Fasax');
+        db.attendance[d][r.dataset.id] = act ? act.textContent : 'Jooga';
       });
-
-      const total = db.students.length;
-      const marked = present + absent + excused;
-      const rate = marked > 0 ? Math.round((present / marked) * 100) : 0;
-
-      document.getElementById('stTotal').textContent = total;
-      document.getElementById('stPresent').textContent = present;
-      document.getElementById('stAbsent').textContent = absent;
-      document.getElementById('stExcused').textContent = excused;
-      document.getElementById('stRate').textContent = rate + '%';
-      document.getElementById('stRateBar').style.width = rate + '%';
-      document.getElementById('stLastDate').textContent = dates.length ? latestDate : '-';
-
-      const alertsBody = document.getElementById('parentAlertsBody');
-      const alertStudents = db.students.filter(s => dayRec[s.id] === 'Maqan' || dayRec[s.id] === 'Fasax');
-
-      if (!alertStudents.length) {
-        alertsBody.innerHTML = '<tr><td colspan="5">Ma jiraan arday maqan ama fasax ah xogta hadda kaydsan.</td></tr>';
-        return;
-      }
-
-      alertsBody.innerHTML = alertStudents.map(s => {
-        const status = dayRec[s.id];
-        const msgText = `Asc ${s.parent || 'waalidka ardayga'}. Waxaan ku wargelinaynaa in ardaygaaga ${s.name} (${s.cls} - ${s.section}) uu taariikhda ${latestDate} ahaa ${status}. Fadlan la soco xaadirinta ilmahaaga. Mahadsanid.`;
-        const cleanPhone = (s.phone || '').replace(/\D/g, '');
-        const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgText)}`;
-        const badgeCls = status === 'Maqan' ? 'b-maqan' : 'b-fasax';
-        return `
-          <tr>
-            <td><strong>${esc(s.name)}</strong><br><span style="font-size:0.75rem;color:var(--muted);">${esc(s.roll)}</span></td>
-            <td>${esc(s.cls)} (${esc(s.section)})</td>
-            <td><span class="badge ${badgeCls}">${status}</span></td>
-            <td>${esc(s.parent)}<br><span style="font-size:0.78rem;">${esc(s.phone)}</span></td>
-            <td><a class="btn btn-green btn-sm" target="_blank" rel="noopener" href="${waUrl}">Dir WhatsApp</a></td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    function renderAttendanceSheet() {
-      const dateVal = document.getElementById('attDate').value || todayISO();
-      const clsVal = document.getElementById('attClass').value;
-      const secVal = document.getElementById('attSection').value;
-      const body = document.getElementById('attSheetBody');
-
-      const list = db.students.filter(s => s.cls === clsVal && s.section === secVal);
-      const dayRec = db.attendance[dateVal] || {};
-
-      if (!list.length) {
-        body.innerHTML = '<tr><td colspan="4">Arday kuma qorna fasalka iyo qaybta aad dooratay.</td></tr>';
-        return;
-      }
-
-      body.innerHTML = list.map(s => {
-        const cur = dayRec[s.id] || 'Jooga';
-        return `
-          <tr data-sid="${s.id}">
-            <td>${esc(s.roll)}</td>
-            <td>${esc(s.name)}</td>
-            <td>
-              <div class="att-group">
-                ${['Jooga', 'Maqan', 'Fasax'].map(st => `
-                  <button type="button" class="att-opt ${cur === st ? 'sel-' + st : ''}" onclick="setRowStatus(this, '${st}')">${st}</button>
-                `).join('')}
-              </div>
-            </td>
-            <td>${esc(s.phone)}</td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    function setRowStatus(btn, status) {
-      const row = btn.closest('tr');
-      row.querySelectorAll('.att-opt').forEach(b => {
-        b.className = 'att-opt';
-        if (b.textContent === status) b.classList.add('sel-' + status);
-      });
-    }
-
-    function markAll(status) {
-      document.querySelectorAll('#attSheetBody tr[data-sid]').forEach(row => {
-        row.querySelectorAll('.att-opt').forEach(b => {
-          b.className = 'att-opt';
-          if (b.textContent === status) b.classList.add('sel-' + status);
-        });
-      });
-    }
-
-    function saveAttendance() {
-      const dateVal = document.getElementById('attDate').value || todayISO();
-      if (!db.attendance[dateVal]) db.attendance[dateVal] = {};
-
-      document.querySelectorAll('#attSheetBody tr[data-sid]').forEach(row => {
-        const sid = row.dataset.sid;
-        const active = row.querySelector('.att-opt.sel-Jooga, .att-opt.sel-Maqan, .att-opt.sel-Fasax');
-        const status = active ? active.textContent : 'Jooga';
-        db.attendance[dateVal][sid] = status;
-      });
-
       saveDB();
-      const el = document.getElementById('attSaveMsg');
-      el.className = 'msg ok';
-      el.textContent = `Xaadirinta taariikhda ${dateVal} waa la kaydiyay.`;
-      renderDashboard();
+      const m = document.getElementById('attMsg'); m.className = 'msg ok'; m.textContent = `Xaadirinta ${d} waa la kaydiyay.`;
+      drawDash();
     }
 
-    function saveStudent(e) {
+    function saveStu(e) {
       e.preventDefault();
-      const editId = document.getElementById('stuEditId').value;
-      const name = document.getElementById('stuName').value.trim();
-      const roll = document.getElementById('stuRoll').value.trim();
-      const cls = document.getElementById('stuClass').value;
-      const section = document.getElementById('stuSection').value;
-      const parent = document.getElementById('stuParent').value.trim();
-      const phone = document.getElementById('stuPhone').value.trim();
-      const msg = document.getElementById('stuMsg');
-
-      if (!name || !roll || !parent || !phone) {
-        msg.className = 'msg err';
-        msg.textContent = 'Fadlan buuxi dhammaan xogta ardayga.';
-        return;
-      }
-
-      if (editId) {
-        const idx = db.students.findIndex(s => s.id === editId);
-        if (idx !== -1) {
-          db.students[idx] = { id: editId, name, roll, cls, section, parent, phone };
-        }
-      } else {
-        db.students.push({
-          id: 'stu_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
-          name, roll, cls, section, parent, phone
-        });
-      }
-
-      saveDB();
-      resetStudentForm();
-      msg.className = 'msg ok';
-      msg.textContent = 'Xogta ardayga waa la kaydiyay.';
-      renderAll();
+      const id = document.getElementById('stuId').value;
+      const obj = { id: id || ('s_' + Date.now()), name: document.getElementById('stuName').value.trim(), roll: document.getElementById('stuRoll').value.trim(), cls: document.getElementById('stuCls').value, section: document.getElementById('stuSec').value, parent: document.getElementById('stuPar').value.trim(), phone: document.getElementById('stuPho').value.trim() };
+      if (id) { const i = db.students.findIndex(x => x.id === id); if (i !== -1) db.students[i] = obj; }
+      else db.students.push(obj);
+      saveDB(); resetStu();
+      const m = document.getElementById('stuMsg'); m.className = 'msg ok'; m.textContent = 'Xogta ardayga waa la kaydiyay.';
+      drawAll();
     }
 
-    function editStudent(id) {
-      const s = db.students.find(x => x.id === id);
-      if (!s) return;
-      document.getElementById('stuEditId').value = s.id;
-      document.getElementById('stuName').value = s.name;
-      document.getElementById('stuRoll').value = s.roll;
-      document.getElementById('stuClass').value = s.cls;
-      document.getElementById('stuSection').value = s.section;
-      document.getElementById('stuParent').value = s.parent;
-      document.getElementById('stuPhone').value = s.phone;
-      document.getElementById('stuFormTitle').textContent = 'Wax Ka Beddel Xogta Ardayga';
+    function editStu(id) {
+      const s = db.students.find(x => x.id === id); if (!s) return;
+      document.getElementById('stuId').value = s.id; document.getElementById('stuName').value = s.name; document.getElementById('stuRoll').value = s.roll;
+      document.getElementById('stuCls').value = s.cls; document.getElementById('stuSec').value = s.section; document.getElementById('stuPar').value = s.parent; document.getElementById('stuPho').value = s.phone;
     }
 
-    function deleteStudent(id) {
+    function delStu(id) {
       if (!confirm('Ma hubtaa inaad tirtirto ardaygan?')) return;
-      db.students = db.students.filter(s => s.id !== id);
-      Object.keys(db.attendance).forEach(d => {
-        delete db.attendance[d][id];
-      });
-      saveDB();
-      renderAll();
+      db.students = db.students.filter(x => x.id !== id);
+      Object.keys(db.attendance).forEach(d => delete db.attendance[d][id]);
+      saveDB(); drawAll();
     }
 
-    function resetStudentForm() {
-      document.getElementById('studentForm').reset();
-      document.getElementById('stuEditId').value = '';
-      document.getElementById('stuFormTitle').textContent = 'Diiwaangelinta Arday Cusub';
+    function resetStu() { document.getElementById('stuForm').reset(); document.getElementById('stuId').value = ''; }
+
+    function drawStu() {
+      const q = (document.getElementById('qStu').value || '').toLowerCase().trim();
+      const fc = document.getElementById('fCls').value;
+      const fs = document.getElementById('fSec').value;
+      const list = db.students.filter(s => (!q || s.name.toLowerCase().includes(q) || s.roll.toLowerCase().includes(q)) && (!fc || s.cls === fc) && (!fs || s.section === fs));
+      document.getElementById('stuBody').innerHTML = list.length ? list.map(s => `<tr><td>${esc(s.roll)}</td><td>${esc(s.name)}</td><td>${esc(s.cls)}</td><td>${esc(s.section)}</td><td>${esc(s.parent)}</td><td>${esc(s.phone)}</td><td><button type="button" class="btn btn-w btn-sm" onclick="editStu('${s.id}')">Beddel</button> <button type="button" class="btn btn-r btn-sm" onclick="delStu('${s.id}')">Tir</button></td></tr>`).join('') : '<tr><td colspan="7">Wax arday ah lama helin.</td></tr>';
     }
 
-    function renderStudents() {
-      const q = (document.getElementById('searchStu').value || '').toLowerCase().trim();
-      const fCls = document.getElementById('filterClass').value;
-      const fSec = document.getElementById('filterSection').value;
-      const body = document.getElementById('studentsBody');
-
-      const filtered = db.students.filter(s => {
-        const matchQ = !q || s.name.toLowerCase().includes(q) || s.roll.toLowerCase().includes(q);
-        const matchCls = !fCls || s.cls === fCls;
-        const matchSec = !fSec || s.section === fSec;
-        return matchQ && matchCls && matchSec;
-      });
-
-      if (!filtered.length) {
-        body.innerHTML = '<tr><td colspan="7">Wax arday ah lama helin.</td></tr>';
-        return;
-      }
-
-      body.innerHTML = filtered.map(s => `
-        <tr>
-          <td>${esc(s.roll)}</td>
-          <td>${esc(s.name)}</td>
-          <td>${esc(s.cls)}</td>
-          <td>${esc(s.section)}</td>
-          <td>${esc(s.parent)}</td>
-          <td>${esc(s.phone)}</td>
-          <td>
-            <button type="button" class="btn btn-light btn-sm" onclick="editStudent('${s.id}')">Beddel</button>
-            <button type="button" class="btn btn-red btn-sm" onclick="deleteStudent('${s.id}')">Tir</button>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function renderClasses() {
-      const body = document.getElementById('classesBody');
+    function drawCls() {
       const rows = [];
-      CLASSES.forEach(cls => {
-        SECTIONS.forEach(sec => {
-          const count = db.students.filter(s => s.cls === cls && s.section === sec).length;
-          rows.push(`
-            <tr>
-              <td>${esc(cls)}</td>
-              <td>${esc(sec)}</td>
-              <td><strong>${count}</strong></td>
-              <td>
-                <button type="button" class="btn btn-primary btn-sm" onclick="openClassAttendance('${cls}', '${sec}')">Fur Xaadirinta</button>
-              </td>
-            </tr>
-          `);
-        });
-      });
-      body.innerHTML = rows.join('');
+      CLS.forEach(c => SEC.forEach(sc => {
+        const cnt = db.students.filter(s => s.cls === c && s.section === sc).length;
+        rows.push(`<tr><td>${esc(c)}</td><td>${esc(sc)}</td><td><strong>${cnt}</strong></td><td><button type="button" class="btn btn-b btn-sm" onclick="openClsAtt('${c}','${sc}')">Fur Xaadirinta</button></td></tr>`);
+      }));
+      document.getElementById('clsBody').innerHTML = rows.join('');
     }
 
-    function openClassAttendance(cls, sec) {
-      document.getElementById('attClass').value = cls;
-      document.getElementById('attSection').value = sec;
-      switchTab('att');
-    }
+    function openClsAtt(c, sc) { document.getElementById('attCls').value = c; document.getElementById('attSec').value = sc; goTab('att'); }
 
-    function getFilteredReportRows() {
-      const period = document.getElementById('repPeriod').value;
-      const baseDate = document.getElementById('repDate').value || todayISO();
-      const clsFilter = document.getElementById('repClass').value;
-
-      const daysSpan = period === 'weekly' ? 7 : period === 'monthly' ? 30 : 1;
-      const endMs = new Date(baseDate + 'T23:59:59').getTime();
-      const startMs = endMs - (daysSpan - 1) * 86400000;
-
-      const stuMap = Object.fromEntries(db.students.map(s => [s.id, s]));
+    function repRows() {
+      const p = document.getElementById('rPer').value;
+      const bd = document.getElementById('rDate').value || tod();
+      const cf = document.getElementById('rCls').value;
+      const span = p === 'weekly' ? 7 : p === 'monthly' ? 30 : 1;
+      const end = new Date(bd + 'T23:59:59').getTime();
+      const start = end - (span - 1) * 86400000;
+      const map = Object.fromEntries(db.students.map(s => [s.id, s]));
       const out = [];
-
       Object.keys(db.attendance).sort().reverse().forEach(d => {
-        const dMs = new Date(d + 'T12:00:00').getTime();
-        if (dMs < startMs || dMs > endMs) return;
-        const rec = db.attendance[d] || {};
-        Object.entries(rec).forEach(([sid, status]) => {
-          const s = stuMap[sid];
-          if (!s) return;
-          if (clsFilter && s.cls !== clsFilter) return;
-          out.push({ date: d, roll: s.roll, name: s.name, cls: `${s.cls} (${s.section})`, status });
+        const t = new Date(d + 'T12:00:00').getTime();
+        if (t < start || t > end) return;
+        Object.entries(db.attendance[d] || {}).forEach(([sid, st]) => {
+          const s = map[sid]; if (!s || (cf && s.cls !== cf)) return;
+          out.push({ date: d, roll: s.roll, name: s.name, cls: `${s.cls} (${s.section})`, status: st });
         });
       });
-
       return out;
     }
 
-    function renderReports() {
-      const body = document.getElementById('reportsBody');
-      const rows = getFilteredReportRows();
-      if (!rows.length) {
-        body.innerHTML = '<tr><td colspan="5">Xog xaadirin ah kuma jirto xulashadan.</td></tr>';
-        return;
-      }
-      body.innerHTML = rows.map(r => `
-        <tr>
-          <td>${esc(r.date)}</td>
-          <td>${esc(r.roll)}</td>
-          <td>${esc(r.name)}</td>
-          <td>${esc(r.cls)}</td>
-          <td><span class="badge b-${r.status.toLowerCase()}">${r.status}</span></td>
-        </tr>
-      `).join('');
+    function drawRep() {
+      const rows = repRows();
+      document.getElementById('repBody').innerHTML = rows.length ? rows.map(r => `<tr><td>${esc(r.date)}</td><td>${esc(r.roll)}</td><td>${esc(r.name)}</td><td>${esc(r.cls)}</td><td><span class="bdg b-${r.status.toLowerCase()}">${r.status}</span></td></tr>`).join('') : '<tr><td colspan="5">Xog xaadirin ah kuma jirto xulashadan.</td></tr>';
     }
 
     function exportCSV() {
-      const rows = getFilteredReportRows();
-      const header = ['Taariikhda', 'Lambarka', 'Magaca Ardayga', 'Fasal / Qayb', 'Xaaladda'];
-      const lines = [
-        header.join(','),
-        ...rows.map(r => [r.date, r.roll, r.name, r.cls, r.status].map(v => `"${String(v).replace(/"/g, '""')}"`).join(','))
-      ];
-      const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `cty-school-warbixin-${todayISO()}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
+      const rows = repRows();
+      const lines = [['Taariikhda','Lambarka','Magaca Ardayga','Fasal / Qayb','Xaaladda'].join(','), ...rows.map(r => [r.date,r.roll,r.name,r.cls,r.status].map(v => `"${String(v).replace(/"/g,'""')}"`).join(','))];
+      const u = URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' }));
+      const a = document.createElement('a'); a.href = u; a.download = `cty-school-warbixin-${tod()}.csv`; a.click(); URL.revokeObjectURL(u);
     }
 
-    function loadSettingsForm() {
-      document.getElementById('setSchool').value = db.schoolName || 'CTY SCHOOL';
-      document.getElementById('setTeacherName').value = db.teacherName || 'Macalin aqiyaar';
-      document.getElementById('setEmail').value = db.adminEmail || 'wacanshaqo939@gmail.com';
-      document.getElementById('setWebhook').value = db.webhookUrl || '';
-      document.getElementById('setNewPass').value = '';
-      renderTeacherIdentity();
-    }
-
-    function saveSettings(e) {
+    function saveSet(e) {
       e.preventDefault();
-      const school = document.getElementById('setSchool').value.trim();
-      const teacherName = document.getElementById('setTeacherName').value.trim() || 'Macalin aqiyaar';
-      const email = document.getElementById('setEmail').value.trim().toLowerCase();
-      const newPass = document.getElementById('setNewPass').value;
-      const webhook = document.getElementById('setWebhook').value.trim();
-      const msg = document.getElementById('setMsg');
-
-      if (!school || !email) {
-        msg.className = 'msg err';
-        msg.textContent = 'Magaca dugsiga iyo Gmail-ka waa lagama maarmaan.';
-        return;
-      }
-
-      db.schoolName = school;
-      db.teacherName = teacherName;
-      db.adminEmail = email;
-      db.webhookUrl = webhook;
-      if (newPass) {
-        if (newPass.length < 4) {
-          msg.className = 'msg err';
-          msg.textContent = 'Password-ka cusub waa inuu ka koobnaadaa ugu yaraan 4 xaraf.';
-          return;
-        }
-        db.adminPassHash = simpleHash(newPass);
-      }
-
-      saveDB();
-      applyLang();
-      msg.className = 'msg ok';
-      msg.textContent = 'Dejimaha dugsiga, profile-ka macallinka, iyo lahaanshaha waa la kaydiyay.';
+      db.schoolName = document.getElementById('setSch').value.trim();
+      db.teacherName = document.getElementById('setTName').value.trim() || 'Macalin aqiyaar';
+      db.adminEmail = document.getElementById('setEm').value.trim().toLowerCase();
+      db.webhookUrl = document.getElementById('setWh').value.trim();
+      const pw = document.getElementById('setPw').value;
+      if (pw) { if (pw.length < 4) { const m = document.getElementById('setMsg'); m.className = 'msg err'; m.textContent = 'Password-ku ugu yaraan 4 xaraf ha ahaado.'; return; } db.adminPassHash = hsh(pw); }
+      saveDB(); applyLang();
+      const m = document.getElementById('setMsg'); m.className = 'msg ok'; m.textContent = 'Dejimaha waa la kaydiyay.';
     }
 
     function exportBackup() {
-      const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `cty-school-backup-${todayISO()}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
+      const u = URL.createObjectURL(new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' }));
+      const a = document.createElement('a'); a.href = u; a.download = `cty-school-backup-${tod()}.json`; a.click(); URL.revokeObjectURL(u);
     }
 
-    function importBackup(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        try {
-          const parsed = JSON.parse(reader.result);
-          db = { ...defaultDB(), ...parsed };
-          saveDB();
-          loadSettingsForm();
-          applyLang();
-          renderAll();
-          const el = document.getElementById('backupMsg');
-          el.className = 'msg ok';
-          el.textContent = 'Xogta waa dib loo soo celiyay.';
-        } catch {
-          const el = document.getElementById('backupMsg');
-          el.className = 'msg err';
-          el.textContent = 'Faylka JSON ma saxna.';
-        }
+    function impBackup(e) {
+      const f = e.target.files[0]; if (!f) return;
+      const r = new FileReader();
+      r.onload = () => {
+        try { db = { ...defDB(), ...JSON.parse(r.result) }; saveDB(); applyLang(); drawAll(); const m = document.getElementById('bakMsg'); m.className = 'msg ok'; m.textContent = 'Xogta waa la soo celiyay.'; }
+        catch { const m = document.getElementById('bakMsg'); m.className = 'msg err'; m.textContent = 'Faylka JSON ma saxna.'; }
       };
-      reader.readAsText(file);
-    }
-
-    function esc(str) {
-      return String(str ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+      r.readAsText(f);
     }
 
     applyLang();
-    if (localStorage.getItem(PERSIST_LOGIN_KEY) === '1' && db.adminPassHash) {
-      enterApp();
-    }
+    if (localStorage.getItem(LG_K) === '1' && db.adminPassHash) enterApp();
   </script>
 </body>
 </html>
